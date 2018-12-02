@@ -51,7 +51,9 @@ class AuthenticationMiddleware implements MiddlewareInterface
                         throw new UnauthorizedHttpException('User not found');
                     }
 
-                    $ip = $request->getClientAddress();
+                    //if its not testing real ip
+                    $ip = !defined('API_TESTS') ? $request->getClientAddress() : '127.0.0.1';
+
                     return $session->check($user, $data['sessionId'], (string) $ip, 1);
                 } else {
                     throw new UnauthorizedHttpException('User not found');
