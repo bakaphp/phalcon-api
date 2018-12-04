@@ -61,7 +61,7 @@ class CompaniesController extends BaseController
     public function getById($id) : Response
     {
         //find the info
-        $company = $this->model->findFirst([
+        $company = $this->model->algo([
             'id = ?0 AND is_deleted = 0 and users_id = ?1',
             'bind' => [$id, $this->userData->getId()],
         ]);
