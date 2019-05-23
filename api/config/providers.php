@@ -23,6 +23,7 @@ use Canvas\Providers\FileSystemProvider;
 use Canvas\Providers\EventManagerProvider;
 use Canvas\Providers\MapperProvider;
 use Canvas\Providers\ThrottleProvider;
+use Canvas\Providers\SocialLoginProvider;
 
 return [
     ConfigProvider::class,
@@ -43,5 +44,6 @@ return [
     FileSystemProvider::class,
     EventManagerProvider::class,
     MapperProvider::class,
-    ThrottleProvider::class
+    ThrottleProvider::class,
+    SocialLoginProvider::class
 ];
