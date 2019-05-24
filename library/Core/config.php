@@ -147,5 +147,9 @@ return [
         'bucketSize' => getenv('THROTTLE_BUCKET_SIZE'),
         'refillTime' => getenv('THROTTLE_REFILL_TIME'),
         'refillAmount' => getenv('THROTTLE_REFILL_AMOUNT'),
+    ],
+    'facebook'=>[
+        'id'=> getenv('FACEBOOK_API_KEY_ID'),
+        'secret'=> getenv('FACEBOOK_API_KEY_SECRET')
     ]
 ];
