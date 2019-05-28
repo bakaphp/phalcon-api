@@ -148,8 +148,11 @@ return [
         'refillTime' => getenv('THROTTLE_REFILL_TIME'),
         'refillAmount' => getenv('THROTTLE_REFILL_AMOUNT'),
     ],
-    'facebook'=>[
-        'id'=> getenv('FACEBOOK_API_KEY_ID'),
-        'secret'=> getenv('FACEBOOK_API_KEY_SECRET')
+    'social'=>[
+        'facebook'=>[
+            'id'=> getenv('FACEBOOK_API_KEY_ID'),
+            'secret'=> getenv('FACEBOOK_API_KEY_SECRET')
+        ],
+        'callback'=> getenv('SOCIAL_LOGIN_CALLBACK')
     ]
 ];
