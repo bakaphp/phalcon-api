@@ -4,11 +4,12 @@ use Canvas\Models\Subscription;
 use Gewaer\Tests\api\PaymentsCest;
 use Canvas\Models\CompaniesSettings;
 use Canvas\Exception\SubscriptionPlanFailureException;
+use Gewaer\Models\Users;
 
 class AppsPlanCest
 {
     /**
-     * Create subscription
+     * Create subscription.
      *
      * @param ApiTester $I
      * @return void
@@ -41,7 +42,7 @@ class AppsPlanCest
     }
 
     /**
-     * Create subscription
+     * Create subscription.
      *
      * @param ApiTester $I
      * @return void
@@ -62,7 +63,7 @@ class AppsPlanCest
     }
 
     /**
-     * Create subscription
+     * Create subscription.
      *
      * @param ApiTester $I
      * @return void
@@ -83,7 +84,7 @@ class AppsPlanCest
     }
 
     /**
-     * Create subscription
+     * Create subscription.
      *
      * @param ApiTester $I
      * @return void
@@ -106,7 +107,7 @@ class AppsPlanCest
     }
 
     /**
-     * We need to make sure we dont have the current subscription delete by other test
+     * We need to make sure we dont have the current subscription delete by other test.
      *
      * @return void
      */
@@ -121,7 +122,7 @@ class AppsPlanCest
     }
 
     /**
-     * Free Trial Ending Test
+     * Free Trial Ending Test.
      *
      * @param ApiTester $I
      * @return void
@@ -149,9 +150,8 @@ class AppsPlanCest
         $I->assertTrue(current($data) == 'Webhook Handled');
     }
 
-   
     /**
-     * Failed Payment permitted routes access Test
+     * Failed Payment permitted routes access Test.
      * @param ApiTester $I
      * @return void
      */
@@ -161,10 +161,12 @@ class AppsPlanCest
         $apiException = null;
         $I->haveHttpHeader('Authorization', $userData->token);
 
+        $companyId = Users::findFirst($userData->id)->currentCompanyId();
+
         //Fetch Paid Setting of Company
-        $paidSetting =  CompaniesSettings::findFirst([
-            'conditions'=>'companies_id = ?0 and name = ?1 and is_deleted = 0',
-            'bind'=>[3,'paid']
+        $paidSetting = CompaniesSettings::findFirst([
+            'conditions' => 'companies_id = ?0 and name = ?1 and is_deleted = 0',
+            'bind' => [$companyId, 'paid']
         ]);
 
         //Modify paid to 0
@@ -178,7 +180,7 @@ class AppsPlanCest
             $response = $I->grabResponse();
             $data = json_decode($response, true);
         } catch (SubscriptionPlanFailureException $e) {
-            $apiException =  $e;
+            $apiException = $e;
         }
 
         $paidSetting->value = 1;

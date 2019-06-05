@@ -3,13 +3,6 @@
     "php": ">= 7.1",
     "ext-openssl": "*",
     "ext-phalcon": ">=3.2.0 <4.0",
-    "baka/auth": "^0.2",
-    "baka/cashier": "dev-master",
-    "baka/database": "^0.1",
-    "baka/http": "^0.1",
-    "baka/mail": "^0.1",
-    "canvas/core": "dev-master",
-    "bakaphp/phalcon-throttler": "^0.1",
     "dariuszp/cli-progress-bar": "^1.0",
     "dmkit/phalcon-jwt-auth": "dev-master",
     "duncan3dc/fork-helper": "^2.2.0",
@@ -19,7 +12,6 @@
     "league/flysystem": "^1.0",
     "league/flysystem-aws-s3-v3": "^1.0",
     "league/fractal": "^0.17.0",
-    "mark-gerarts/auto-mapper-plus": "^1.3",
     "monolog/monolog": "^1.23",
     "namshi/notificator": " 1.0.*",
     "nesbot/carbon": "~1.18",
@@ -30,7 +22,12 @@
     "robmorgan/phinx": "^0.10",
     "sentry/sentry": "^1.9",
     "sly/notification-pusher": "2.x",
-    "vlucas/phpdotenv": "^2.4"
+    "vlucas/phpdotenv": "^2.4",
+    "elasticsearch/elasticsearch": "^6.1",
+    "mark-gerarts/auto-mapper-plus": "^1.3",
+    "fzaninotto/faker": "^1.9@dev",
+    "baka/cashier": "dev-master",
+    "baka/blameable": "^0.1"
   },
   "require-dev": {
     "codeception/codeception": "^2.4",
@@ -48,7 +45,9 @@
     "symfony/finder": "3.4",
     "symfony/process": "3.4",
     "symfony/yaml": "3.4",
-    "odan/phinx-migrations-generator": "dev-master"
+    "odan/phinx-migrations-generator": "dev-master",
+    "swiftmailer/swiftmailer": "^6",
+    "stripe/stripe-php": "~6.0"
   },
   "config": {
     "preferred-install": "dist",

@@ -67,7 +67,7 @@ class UsersInviteCest
         $response = $I->grabResponse();
         $dataExitingUser = json_decode($response, true);
 
-        $I->assertTrue($dataExitingUser['users_id'] == $dataInvite['id']);
+        $I->assertTrue($dataExitingUser['id'] == $dataInvite['id']);
     }
 
     /**

@@ -1,14 +1,15 @@
-<?php 
+<?php
+use Canvas\Models\Users;
 
 class CompaniesCustomFieldsCest
 {
     /**
-     * Model
+     * Model.
      */
     protected $model = 'companies-custom-fields';
 
     /**
-     * Create a new Email Templates
+     * Create a new Email Templates.
      *
      * @param ApiTester $I
      * @return void
@@ -17,11 +18,19 @@ class CompaniesCustomFieldsCest
     {
         $userData = $I->apiLogin();
         $testValue = 'test_' . time();
+        $companyId = Users::findFirst($userData->id)->currentCompanyId();
 
         $I->haveHttpHeader('Authorization', $userData->token);
+
+        $I->sendGet("/v1/custom-fields?q=(companies_id:$companyId)");
+        $I->seeResponseIsSuccessful();
+        $response = $I->grabResponse();
+        $data = json_decode($response, true);
+        $customFieldId = $data[0]['id'];
+
         $I->sendPost('/v1/' . $this->model, [
-            'companies_id' => 3,
-            'custom_fields_id' => 2,
+            'companies_id' => $companyId,
+            'custom_fields_id' => $customFieldId,
             'value' => $testValue
         ]);
 
@@ -33,7 +42,7 @@ class CompaniesCustomFieldsCest
     }
 
     /**
-     * update a Email Template
+     * update a Email Template.
      *
      * @param ApiTester $I
      * @return void
@@ -61,24 +70,35 @@ class CompaniesCustomFieldsCest
         $I->assertTrue($data['value'] == $updatedValue);
     }
 
+    /**
+     * Confirm custom field
+     *
+     * @param ApiTester $I
+     * @return void
+     */
     public function confirmCustomField(ApiTester $I): void
     {
         //Create a new company with a custom field
         $userData = $I->apiLogin();
         $testCompany = 'test_company' . time();
+        $companyId = Users::findFirst($userData->id)->currentCompanyId();
 
         $I->haveHttpHeader('Authorization', $userData->token);
-        $I->sendPost('/v1/' . 'companies', [
-            'name' => $testCompany,
-            'website' => 'example.com',
-            'example_custom_field' => 'example_custom_value'
+        $I->sendGet("/v1/custom-fields?q=(companies_id:$companyId)");
+        $I->seeResponseIsSuccessful();
+        $response = $I->grabResponse();
+        $data = json_decode($response, true);
+        $customFieldName = $data[0]['name'];
+
+        $I->sendPut('/v1/' . 'companies/' . $companyId, [
+            $customFieldName => 'example_custom_value'
         ]);
 
         $I->seeResponseIsSuccessful();
         $response = $I->grabResponse();
         $data = json_decode($response, true);
 
-        $customfield = 'example_custom_field';
+        $customfield = $customFieldName;
 
         // Confirm newly created custom field
         $I->sendGet('/v1/custom-fields' . '?q=(name:' . $customfield . ')');
@@ -87,7 +107,7 @@ class CompaniesCustomFieldsCest
         $response = $I->grabResponse();
         $customFieldData = json_decode($response, true);
 
-        $I->assertTrue(isset($data['example_custom_field']));
+        $I->assertTrue(isset($data[$customFieldName]));
         $I->assertTrue($customfield == $customFieldData[0]['name']);
     }
 }

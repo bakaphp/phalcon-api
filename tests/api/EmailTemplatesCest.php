@@ -3,12 +3,12 @@
 class EmailTemplatesCest
 {
     /**
-     * Model
+     * Model.
      */
     protected $model = 'email-templates';
 
     /**
-     * Create a new Email Templates
+     * Create a new Email Templates.
      *
      * @param ApiTester $I
      * @return void
@@ -19,7 +19,15 @@ class EmailTemplatesCest
         $testName = 'users-invite';
 
         $I->haveHttpHeader('Authorization', $userData->token);
-        $I->sendPost('/v1/' . $this->model . '/6/copy', [
+
+        //get the current list of emails
+        $I->sendGet("/v1/{$this->model}?q=(apps_id:0)");
+        $I->seeResponseIsSuccessful();
+        $response = $I->grabResponse();
+        $data = json_decode($response, true);
+        $copyId = $data[0]['id'];
+
+        $I->sendPost('/v1/' . $this->model . '/' . $copyId . '/copy', [
             'name' => $testName,
         ]);
 
@@ -34,7 +42,7 @@ class EmailTemplatesCest
     }
 
     /**
-     * update a Email Template
+     * update a Email Template.
      *
      * @param ApiTester $I
      * @return void

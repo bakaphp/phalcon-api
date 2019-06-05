@@ -1,14 +1,14 @@
-<?php 
+<?php
 
 class CustomFieldsCest
 {
     /**
-     * Model
+     * Model.
      */
     protected $model = 'custom-fields';
 
     /**
-     * Create a new Email Templates
+     * Create a new Email Templates.
      *
      * @param ApiTester $I
      * @return void
@@ -24,6 +24,7 @@ class CustomFieldsCest
             'companies_id' => 1,
             'apps_id' => 1,
             'name' => $testName,
+            'label' => $testName,
             'custom_fields_modules_id' => 1,
             'fields_type_id' => 1
         ]);
@@ -36,7 +37,7 @@ class CustomFieldsCest
     }
 
     /**
-     * update a Email Template
+     * update a Email Template.
      *
      * @param ApiTester $I
      * @return void

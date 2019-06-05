@@ -1,6 +1,6 @@
 <?php
 
-use Baka\Http\RouterCollection;
+use Baka\Http\Router\Collection;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,7 +10,7 @@ use Baka\Http\RouterCollection;
 | Here is where you can register all of the routes for api.
  */
 
-$router = new RouterCollection($application);
+$router = new Collection($application);
 $router->setPrefix('/v1');
 
 $router->get('/', [
@@ -28,6 +28,5 @@ $router->get('/status', [
         'jwt' => false,
     ]
 ]);
-
 
 $router->mount();

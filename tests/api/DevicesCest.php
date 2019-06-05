@@ -8,12 +8,12 @@ use Phalcon\Security\Random;
 class DevicesCest
 {
     /**
-     * Test Device Id
+     * Test Device Id.
      */
     private $deviceId;
 
     /**
-     * Create
+     * Create.
      *
      * @param ApiTester $I
      * @return void
@@ -21,11 +21,12 @@ class DevicesCest
     public function attachDevice(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
+
         $random = new Random();
         $this->deviceId = $random->number(100);
 
         $I->haveHttpHeader('Authorization', $userData->token);
-        $I->sendPost('/v1/' . 'users/2/devices', [
+        $I->sendPost('/v1/' . 'users/' . $userData->id . '/devices', [
             'app' => 'baka',
             'deviceId' => $this->deviceId,
         ]);
@@ -38,7 +39,7 @@ class DevicesCest
     }
 
     /**
-     * Create
+     * Create.
      *
      * @param ApiTester $I
      * @return void
@@ -48,7 +49,7 @@ class DevicesCest
         $userData = $I->apiLogin();
 
         $I->haveHttpHeader('Authorization', $userData->token);
-        $I->sendPost('/v1/' . 'users/2/devices', [
+        $I->sendPost('/v1/' . 'users/' . $userData->id . '/devices', [
             'app' => 'baka',
             'deviceId' => $this->deviceId,
         ]);
@@ -61,7 +62,7 @@ class DevicesCest
     }
 
     /**
-     * update
+     * update.
      *
      * @param ApiTester $I
      * @return void
@@ -71,9 +72,7 @@ class DevicesCest
         $userData = $I->apiLogin();
 
         $I->haveHttpHeader('Authorization', $userData->token);
-        $I->sendPost('/v1/' . "users/2/devices/{$this->deviceId}/detach", [
-            'source_id' => 1
-        ]);
+        $I->sendDelete('/v1/' . "users/{$userData->id}/devices/{$this->deviceId}");
 
         $I->seeResponseIsSuccessful();
         $response = $I->grabResponse();

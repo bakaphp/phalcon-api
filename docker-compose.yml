@@ -8,6 +8,7 @@ services:
     volumes:
       - .:/app
       - ../canvas-core:/canvas-core
+      - ../../baka:/baka
     depends_on:
       - 'redis'
       - 'mysql'
@@ -31,7 +32,7 @@ services:
       - public-network
 
   redis:
-    image: 'redis:5.0-alpine'
+    image: 'redis:5.0.5-alpine'
     ports: 
       - "6379:6379"
     volumes:
@@ -55,7 +56,7 @@ services:
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - discovery.type=single-node
-    command: ./bin/elasticsearch-plugin install https://github.com/NLPchina/elasticsearch-sql/releases/download/6.7.0.0/elasticsearch-sql-6.7.0.0.zip #install sql plugin
+    #command: ./bin/elasticsearch-plugin install https://github.com/NLPchina/elasticsearch-sql/releases/download/6.7.0.0/elasticsearch-sql-6.7.0.0.zip #install sql plugin
     ports: # Expose Elasticsearch ports
       - "9300:9300"
       - "9200:9200"

@@ -1,4 +1,5 @@
-<?php 
+<?php
+use Canvas\Models\Companies;
 
 class CustomFieldsModulesCest
 {
@@ -21,7 +22,8 @@ class CustomFieldsModulesCest
         $I->haveHttpHeader('Authorization', $userData->token);
         $I->sendPost('/v1/' . $this->model, [
             'apps_id' => 1,
-            'name' => $testName
+            'name' => $testName,
+            'model_name' => get_class(new Companies())
         ]);
 
         $I->seeResponseIsSuccessful();
@@ -50,7 +52,8 @@ class CustomFieldsModulesCest
         $data = json_decode($response, true);
 
         $I->sendPUT('/v1/' . $this->model . '/' . $data[count($data) - 1]['id'], [
-            'name' => $updatedName
+            'name' => $updatedName,
+            'model_name' => get_class(new Companies())
         ]);
 
         $I->seeResponseIsSuccessful();

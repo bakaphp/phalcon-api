@@ -5,8 +5,8 @@ use function Canvas\Core\envValue;
 
 return [
     'application' => [ //@todo migration to app
-        'production ' => getenv('PRODUCTION'),
-        'development ' => getenv('DEVELOPMENT'),
+        'production' => getenv('PRODUCTION'),
+        'development' => getenv('DEVELOPMENT'),
         'jwtSecurity' => getenv('JWT_SECURITY'),
         'debug' => [
             'profile' => getenv('DEBUG_PROFILE'),
@@ -124,6 +124,9 @@ return [
         'host' => getenv('BEANSTALK_HOST'),
         'port' => getenv('BEANSTALK_PORT'),
         'prefix' => getenv('BEANSTALK_PREFIX'),
+    ],
+    'elasticSearch' => [
+        'hosts' => [getenv('ELASTIC_HOST')], //change to pass array
     ],
     'jwt' => [
         'secretKey' => envValue('APP_JWT_TOKEN'),
