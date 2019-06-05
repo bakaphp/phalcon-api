@@ -1,6 +1,7 @@
 {
   "require": {
     "php": ">= 7.1",
+    "canvas/core": "^0.2",
     "ext-openssl": "*",
     "ext-phalcon": ">=3.2.0 <4.0",
     "dariuszp/cli-progress-bar": "^1.0",
