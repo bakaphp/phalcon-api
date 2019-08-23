@@ -9,7 +9,7 @@ $publicRoutes = [
 ];
 
 $privateRoutes = [
-    Route::post('/users/{id}/apps/{appsId}/status')->controller('UsersController')->action('changeAppUserActiveStatus'),
+    Route::put('/users/{id}/apps/{appsId}/status')->controller('UsersController')->action('changeAppUserActiveStatus'),
 ];
 
 $routeGroup = RouteGroup::from($publicRoutes)

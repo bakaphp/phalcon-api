@@ -157,5 +157,17 @@ return [
             'id' => getenv('SOCIAL_FACEBOOK_ID'),
             'secret' => getenv('SOCIAL_FACEBOOK_SECRET'),
         ]
+    ],
+    'pushNotifications'=>[
+        'android'=>[
+            'appId'=>getenv('CANVAS_ANDROID_APP_ID'),
+            'authKey'=> getenv('CANVAS_ANDROID_AUTH_KEY'),
+            'userAuthKey'=> getenv('CANVAS_ANDROID_APP_USER_AUTH_KEY')
+        ],
+        'ios'=>[
+            'appId'=>getenv('CANVAS_IOS_APP_ID'),
+            'authKey'=> getenv('CANVAS_IOS_AUTH_KEY'),
+            'userAuthKey'=> getenv('CANVAS_IOS_APP_USER_AUTH_KEY')
+        ]
     ]
 ];
