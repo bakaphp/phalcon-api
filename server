@@ -74,6 +74,13 @@ switch ($action) {
             require __DIR__ . '/library/Core/autoload.php';
         });
         $http->on('request', function ($request, $response) {
+            $response->header('Access-Control-Allow-Origin', '*');
+            $response->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+            $response->header('Access-Control-Allow-Headers', 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range,publicKey,Authorization');
+            $response->header('Access-Control-Max-Age', '86400');
+            $response->header('Access-Control-Allow-Credentials', 'true');
+            $response->header('Content-Type', 'text/plain charset=UTF-8');
+
             try {
                 //OPTION Request
                 if ($request->server['request_method'] == 'OPTIONS') {

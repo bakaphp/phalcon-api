@@ -18,6 +18,21 @@ services:
     networks:
       - local-network
 
+  swoole:
+    build: .
+    volumes:
+      - .:/app
+      - ../canvas-core:/canvas-core
+      - ../../baka:/baka
+    depends_on:
+      - 'redis'
+      - 'mysql'
+    tty: true
+    ports:
+      - "8081:8081"
+    networks:
+      - local-network
+
   nginx:
     image: nginx:latest
     ports:
