@@ -62,14 +62,13 @@
         ]
       },
     "autoload-dev": {
-        "autoload": {
-            "psr-4": {
-                "Niden\\Tests": "tests/",
-                "Gewaer\\Tests": "tests/"
-            }
+        "psr-4": {
+            "Niden\\Tests\\": "tests/",
+            "Gewaer\\Tests\\": "tests/"
         }
       },
     "scripts": {
+      "test": "./vendor/bin/codecept run",
       "phpcs": "phpcs --standard=PSR2"
     }
   }
