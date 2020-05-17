@@ -1,7 +1,7 @@
 {
   "require": {
     "php": ">= 7.1",
-    "canvas/core": "0.1.x-dev",
+    "canvas/core": "0.2.x-dev",
     "ext-openssl": "*",
     "ext-phalcon": ">=3.2.0 <4.0"
   },
