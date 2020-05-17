@@ -8,10 +8,9 @@ define('APP_PATH', ROOT_PATH);
 define('IS_CLI', false);
 define('ENGINE', 'SWOOLE');
 
-use Phalcon\Di\FactoryDefault;
 use Canvas\Bootstrap\Swoole;
 use Canvas\Http\SwooleResponse;
-use Canvas\Exception\ServerErrorHttpException;
+use Phalcon\Di\FactoryDefault;
 
 $script = $argv[0];
 if (empty($argv[1])) {
@@ -76,10 +75,10 @@ switch ($action) {
         $http->on('request', function ($request, $response) {
             $response->header('Access-Control-Allow-Origin', '*');
             $response->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-            $response->header('Access-Control-Allow-Headers', 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range,publicKey,Authorization');
+            $response->header('Access-Control-Allow-Headers', 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range,publicKey,Authorization,KanvasKey,Client-Id,Client-Secret-Id');
             $response->header('Access-Control-Max-Age', '86400');
             $response->header('Access-Control-Allow-Credentials', 'true');
-            $response->header('Content-Type', 'text/plain charset=UTF-8');
+            $response->header('Content-Type', 'application/json charset=UTF-8');
 
             try {
                 //OPTION Request
@@ -99,56 +98,12 @@ switch ($action) {
 
                 $bootstrap->run();
             } catch (Throwable $e) {
-                //Server errores FATAL
-
-                $httpCode = (method_exists($e, 'getHttpCode')) ? $e->getHttpCode() : 400;
-                $httpMessage = (method_exists($e, 'getHttpMessage')) ? $e->getHttpMessage() : 'Bad Request';
-                $data = (method_exists($e, 'getData')) ? $e->getData() : [];
-
                 //if we get a exception before response
                 if (!is_object($SResponse)) {
                     $SResponse = new SwooleResponse();
                     $SResponse->init($response);
                 }
-                $SResponse->setHeader('Access-Control-Allow-Origin', '*'); //@todo check why this fails on nginx
-                $SResponse->setStatusCode($httpCode, $httpMessage);
-                $SResponse->setContentType('application/json');
-
-                $content = '';
-                $timestamp = date('c');
-                $hash = sha1($timestamp . $content);
-                $eTag = sha1($content);
-
-                $jsonapi = [
-                    'jsonapi' => [
-                        'version' => '1.0',
-                    ],
-                ];
-                $meta = [
-                    'meta' => [
-                        'timestamp' => $timestamp,
-                        'hash' => $hash,
-                    ]
-                ];
-
-                $content = [
-                    'errors' => [
-                        'type' => $httpMessage,
-                        'message' => $e->getMessage(),
-                        'trace' => $e->getTraceAsString(),
-                        'data' => $data,
-                    ],
-                ];
-
-                $data = $jsonapi + $content + $meta;
-
-                $SResponse->setJsonContent($data);
-
-                if ($e instanceof ServerErrorHttpException && getenv('PRODUCTION')) {
-                    $bootstrap->getContainer()->getLog()->error($e->getTraceAsString());
-                }
-
-                $SResponse->send();
+                $SResponse->handleException($e)->send();
             }
         });
 
@@ -157,14 +112,14 @@ switch ($action) {
         break;
     case 'reload':
         if ($pid > 0 && swoole_process::kill($pid, SIGUSR1)) {
-            echo 'swoole http server reload successed.' . PHP_EOL;
+            echo 'swoole http server reload successfully .' . PHP_EOL;
         } else {
             echo 'swoole http server is not running' . PHP_EOL;
         }
         break;
     case 'stop':
         if ($pid > 0 && swoole_process::kill($pid)) {
-            echo 'swoole http server stop successed.' . PHP_EOL;
+            echo 'swoole http server stop successfully.' . PHP_EOL;
         } else {
             echo 'swoole http server is not running' . PHP_EOL;
         }

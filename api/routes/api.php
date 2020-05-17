@@ -23,4 +23,7 @@ $privateRoutesGroup = RouteGroup::from($privateRoutes)
 /**
  * @todo look for a better way to handle this
  */
-return array_merge($routeGroup->toCollections(), $privateRoutesGroup->toCollections());
+return array_merge(
+    $routeGroup->toCollections(),
+    $privateRoutesGroup->toCollections()
+);

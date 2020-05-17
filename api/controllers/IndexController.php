@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Gewaer\Api\Controllers;
 
-use Phalcon\Http\Response;
 use Canvas\Api\Controllers\IndexController as CanvasIndexController;
+use Phalcon\Http\Response;
 
 /**
  * Class IndexController.
