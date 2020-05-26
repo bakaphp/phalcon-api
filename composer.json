@@ -21,7 +21,6 @@
     "symfony/finder": "3.4",
     "symfony/process": "3.4",
     "symfony/yaml": "3.4",
-    "baka/cashier": "dev-master",
     "mark-gerarts/auto-mapper-plus": "2.0.0-alpha1",
     "swiftmailer/swiftmailer": "^6",
     "stripe/stripe-php": "~6.0",
