@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Gewaer\Providers;
 
 use Canvas\Providers\RouterProvider as CanvasRouterProvider;
-use function Canvas\Core\appPath;
+use function Baka\appPath;
 use Phalcon\Di;
 
 class RouterProvider extends CanvasRouterProvider

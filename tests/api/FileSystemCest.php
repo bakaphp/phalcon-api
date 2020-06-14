@@ -3,7 +3,7 @@
 namespace Gewaer\Tests\api;
 
 use ApiTester;
-use function Canvas\Core\appPath;
+use function Baka\appPath;
 
 class FileSystemCest
 {
