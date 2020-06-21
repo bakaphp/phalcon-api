@@ -2,19 +2,19 @@
 
 namespace Gewaer\Tests\integration\library\Acl;
 
-use IntegrationTester;
 use Canvas\Acl\Manager as AclManager;
-use Phalcon\Di\FactoryDefault;
-use Canvas\Providers\AclProvider;
-use Gewaer\Providers\ConfigProvider;
-use Canvas\Providers\DatabaseProvider;
 use Canvas\Models\Users;
+use Canvas\Providers\AclProvider;
+use Canvas\Providers\DatabaseProvider;
+use Gewaer\Providers\ConfigProvider;
+use IntegrationTester;
 use Page\Data;
+use Phalcon\Di\FactoryDefault;
 
 class AclCest
 {
     /**
-     * Initiliaze ACL
+     * Initiliaze ACL.
      *
      * @return void
      */
@@ -48,7 +48,7 @@ class AclCest
     {
         $acl = $this->aclService();
 
-        $I->assertTrue($acl->addResource('Default.Users', ['read', 'list', 'create', 'update', 'delete']));
+        $I->assertTrue($acl->addComponent('Default.Users', ['read', 'list', 'create', 'update', 'delete']));
     }
 
     public function checkAllowPermission(IntegrationTester $I)

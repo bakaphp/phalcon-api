@@ -3,11 +3,10 @@
 namespace Gewaer\Tests\api;
 
 use ApiTester;
-use Page\Data;
-use function json_decode;
-use Exception;
-use Phalcon\Security\Random;
 use Canvas\Models\Users;
+use Exception;
+use function json_decode;
+use Page\Data;
 
 class AuthCest
 {
@@ -15,6 +14,7 @@ class AuthCest
      * Test login error.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function loginUnknownUser(ApiTester $I)
@@ -40,23 +40,21 @@ class AuthCest
      * Create new users.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function signup(ApiTester $I)
     {
-        $random = new Random();
-        $userName = $random->base58();
-
-        $email = !Users::findFirstByEmail('tes2t@baka.io') ? 'tes2t@baka.io' : $userName . '@baka.io';
+        $email = !Users::findFirstByEmail('tes2t@baka.io') ? 'tes2t@baka.io' :  $I->faker()->email;
 
         $I->sendPOST(Data::$usersUrl, [
             'email' => $email,
             'password' => 'bakatest123567',
             'verify_password' => 'bakatest123567',
-            'firstname' => $userName,
-            'lastname' => $userName,
-            'displayname' => $userName,
-            'default_company' => $userName,
+            'firstname' => $I->faker()->firstName,
+            'lastname' => $I->faker()->lastName,
+            'displayname' => $I->faker()->userName,
+            'default_company' => $I->faker()->domainWord,
         ]);
 
         $I->seeResponseIsSuccessful();
@@ -72,6 +70,7 @@ class AuthCest
      * Test login user.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function loginKnownUser(ApiTester $I)
@@ -88,7 +87,9 @@ class AuthCest
 
     /**
      * Change user's email and relogin.
+     *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function changeUserEmail(ApiTester $I)
