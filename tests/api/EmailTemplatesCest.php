@@ -11,9 +11,10 @@ class EmailTemplatesCest
      * Create a new Email Templates.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
-    public function insertTemplate(ApiTester $I) : void
+    public function copyTemplate(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
         $testName = 'users-invite';
@@ -45,6 +46,7 @@ class EmailTemplatesCest
      * update a Email Template.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function updateTemplate(ApiTester $I) : void

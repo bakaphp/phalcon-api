@@ -28,12 +28,13 @@ class AuthCest
                 ]
             );
 
-            $response = $e->getMessage();
+            $response = $I->grabResponse();
+            $response = json_decode($response, true);
         } catch (Exception $e) {
             $response = $e->getMessage();
         }
 
-        $I->assertEquals('No User Found', $response);
+        $I->assertEquals('No User Found', $response['errors']['message']);
     }
 
     /**
@@ -45,7 +46,7 @@ class AuthCest
      */
     public function signup(ApiTester $I)
     {
-        $email = !Users::findFirstByEmail('tes2t@baka.io') ? 'tes2t@baka.io' :  $I->faker()->email;
+        $email = !Users::findFirstByEmail('tes2t@baka.io') ? 'tes2t@baka.io' : $I->faker()->email;
 
         $I->sendPOST(Data::$usersUrl, [
             'email' => $email,
