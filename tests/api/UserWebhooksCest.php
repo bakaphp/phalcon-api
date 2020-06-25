@@ -13,6 +13,7 @@ class UserWebhooksCest extends BakaRestTest
      * Create.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function create(ApiTester $I) : void
@@ -40,6 +41,7 @@ class UserWebhooksCest extends BakaRestTest
      * update.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function update(ApiTester $I) : void
@@ -70,9 +72,10 @@ class UserWebhooksCest extends BakaRestTest
      * Test executing webhook.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
-    public function execute(ApiTester $I): void
+    public function execute(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
 

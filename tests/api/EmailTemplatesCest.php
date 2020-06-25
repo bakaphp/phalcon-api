@@ -17,7 +17,7 @@ class EmailTemplatesCest
     public function copyTemplate(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
-        $testName = 'users-invite';
+        $testName = 'users-invite' . time();
 
         $I->haveHttpHeader('Authorization', $userData->token);
 
@@ -37,7 +37,7 @@ class EmailTemplatesCest
         $data = json_decode($response, true);
 
         //Lets extract the main name of the created instance
-        $baseName = substr($data['name'], 0, 12);
+        $baseName = $data['name'];
 
         $I->assertTrue($baseName == $testName);
     }

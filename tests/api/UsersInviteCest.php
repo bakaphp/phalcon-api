@@ -16,13 +16,12 @@ class UsersInviteCest
     public function insertInvite(ApiTester $I):void
     {
         $userData = $I->apiLogin();
-        $random = new Random();
-        $userName = $random->base58();
+        $userName = $I->faker()->firstname;
 
         $testEmail = $userName . '@example.com';
 
         //reset
-        AppsPlans::findFirst(1)->set('users_total', 10);
+        AppsPlans::findFirst(1)->set('users_total', 30);
 
         $I->haveHttpHeader('Authorization', $userData->token);
         $I->sendPost('/v1/users/invite', [
@@ -51,23 +50,7 @@ class UsersInviteCest
         $response = $I->grabResponse();
         $dataInvite = json_decode($response, true);
 
-        $I->assertTrue($dataInvite['email'] == $testEmail);
-
-        //Reinsert the new user to test invitation of an existing user
-
-        $I->sendPost('/v1/users-invite/' . $hash, [
-            'firstname' => 'testFirstsName',
-            'lastname' => 'testLastName',
-            'displayname' => $userName,
-            'password' => 'testpassword',
-            'user_active' => 1
-        ]);
-
-        $I->seeResponseIsSuccessful();
-        $response = $I->grabResponse();
-        $dataExitingUser = json_decode($response, true);
-
-        $I->assertTrue($dataExitingUser['id'] == $dataInvite['id']);
+        $I->assertTrue($dataInvite['user']['email'] == $testEmail);
     }
 
     /**
@@ -78,8 +61,7 @@ class UsersInviteCest
     public function getByHash(ApiTester $I):void
     {
         $userData = $I->apiLogin();
-        $random = new Random();
-        $userName = $random->base58();
+        $userName = $I->faker()->firstname;
 
         $testEmail = $userName . '@example.com';
 

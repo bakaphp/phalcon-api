@@ -19,7 +19,7 @@ return [
         ]
     ],
     'app' => [
-        //GEWAER is a multi entity app encosystem so we need what is the current api ID for this api
+        //GEWAER is a multi entity app ecosystem so we need what is the current api ID for this api
         'id' => envValue('GEWAER_APP_ID', 1),
         'frontEndUrl' => envValue('FRONTEND_URL'),
         'version' => envValue('VERSION', time()),
@@ -45,7 +45,7 @@ return [
         'models' => 'Gewaer\Models',
     ],
     'filesystem' => [
-        //temp directoy where we will upload our files before moving them to the final location
+        //temp directory where we will upload our files before moving them to the final location
         'uploadDirectoy' => appPath(envValue('LOCAL_UPLOAD_DIR_TEMP')),
         'local' => [
             'path' => appPath(envValue('LOCAL_UPLOAD_DIR')),
@@ -73,11 +73,11 @@ return [
         'options' => [
             'redis' => [
                 'defaultSerializer' => Redis::SERIALIZER_PHP,
-                'host'=> envValue('REDIS_HOST', '127.0.0.1'),
-                'port'=> envValue('REDIS_PORT', 6379),
+                'host' => envValue('REDIS_HOST', '127.0.0.1'),
+                'port' => envValue('REDIS_PORT', 6379),
                 'lifetime' => envValue('CACHE_LIFETIME', 86400),
                 'index' => 1,
-                'prefix'   => 'data-',
+                'prefix' => 'data-',
             ],
         ],
         'metadata' => [
@@ -88,11 +88,11 @@ return [
             'prod' => [
                 'adapter' => 'redis',
                 'options' => [
-                    'host'     => envValue('REDIS_HOST', '127.0.0.1'),
-                    'port'     => envValue('REDIS_PORT', 6379),
-                    'index'    => 1,
+                    'host' => envValue('REDIS_HOST', '127.0.0.1'),
+                    'port' => envValue('REDIS_PORT', 6379),
+                    'index' => 1,
                     'lifetime' => envValue('CACHE_LIFETIME', 86400),
-                    'prefix'   => 'metadatas-caches-'
+                    'prefix' => 'metadatas-caches-'
                 ],
             ],
         ],
