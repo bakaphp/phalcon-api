@@ -43,6 +43,7 @@ install:
   - composer self-update
   - composer clearcache
   - cd ~/ && rm -rf cphalcon && git clone -b 4.0.x -q --depth=1 https://github.com/phalcon/cphalcon.git && cd cphalcon/build && ./install
+  - cd ~/ && git clone https://github.com/jbboehr/php-psr.git && cd php-psr/usr/local/bin/phpize && ./configure --with-php-config=/usr/local/bin/php-config && make && make test && make install
   - echo 'extension = "psr.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'extension = "phalcon.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
