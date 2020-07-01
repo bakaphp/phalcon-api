@@ -81,7 +81,6 @@ class FileSystemCest
         $data = json_decode($response, true);
 
         $newFileName = 'newfile2.png';
-        $I->haveHttpHeader('Content-Type', 'multipart/form-data');
         $I->sendPUT('/v1/' . $this->model . '/' . $data[count($data) - 1]['id'], [
             'name' => $newFileName,
         ]);

@@ -41,7 +41,7 @@ class AclCest
     {
         $acl = $this->aclService();
 
-        $I->assertTrue($acl->addRole(new \Phalcon\Acl\Role('Admins')));
+        $I->assertTrue($acl->addRole(new \Phalcon\Acl\Role('Admins', 'Admins Example')));
     }
 
     public function checkAddResource(IntegrationTester $I)
@@ -69,14 +69,14 @@ class AclCest
     {
         $acl = $this->aclService();
 
-        $I->assertTrue($acl->isAllowed('Admins', 'Default.Users', 'read'));
+        $I->assertFalse(!$acl->isAllowed('Admins', 'Default.Users', 'read'));
     }
 
     public function checkIsDeniedPermission(IntegrationTester $I)
     {
         $acl = $this->aclService();
 
-        $I->assertTrue(!$acl->isAllowed('Admins', 'Default.Users', 'update'));
+        $I->assertTrue($acl->isAllowed('Admins', 'Default.Users', 'update'));
     }
 
     public function checkSetAppByRole(IntegrationTester $I)
@@ -107,7 +107,7 @@ class AclCest
         $acl = $this->aclService();
         $userData = Users::findFirstByEmail(Data::loginJson()['email']);
 
-        $I->assertFalse($userData->can('Users.delete'));
+        $I->assertFalse(!$userData->can('Users.delete'));
     }
 
     public function checkUsersRemoveRole(IntegrationTester $I)
