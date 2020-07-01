@@ -45,6 +45,7 @@ install:
   - cd ~/ && rm -rf cphalcon && git clone -b 4.0.x -q --depth=1 https://github.com/phalcon/cphalcon.git && cd cphalcon/build && ./install
   - echo 'extension = "phalcon.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+   - echo "extension = psr.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - php --ri phalcon
   - wget https://github.com/swoole/swoole-src/archive/v4.3.3.tar.gz -O swoole.tar.gz && mkdir -p swoole && tar -xf swoole.tar.gz -C swoole --strip-components=1 && rm swoole.tar.gz && cd swoole && phpize && ./configure && make -j$(nproc) && make install && cd - && rm -rf swoole
   - echo "extension = swoole.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
