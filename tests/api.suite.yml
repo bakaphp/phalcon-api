@@ -10,6 +10,6 @@ modules:
     - \Helper\Integration
     - REST:
         depends: PhpBrowser
-        url: 'http://127.0.0.1:8888'
+        url: 'http://127.0.0.1'
         curl:
           CURLOPT_RETURNTRANSFER: true
