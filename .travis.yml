@@ -8,6 +8,7 @@ services:
   - memcached
   - redis-server
   - rabbitmq
+  - nginx
 
 addons:
   apt:
@@ -21,7 +22,7 @@ env:
       - DATA_API_MYSQL_HOST: "127.0.0.1"
       - DATA_API_MYSQL_PASS: ""
       - DATA_API_MYSQL_USER: "root"
-      - DATA_API_MYSQL_NAME: "gonano"
+      - DATA_API_MYSQL_NAME: "baka"
       - DATA_API_MEMCACHED_HOST: "127.0.0.1"
       - DATA_API_MEMCACHED_PORT: 11211
       - DATA_API_MEMCACHED_WEIGHT: 100
