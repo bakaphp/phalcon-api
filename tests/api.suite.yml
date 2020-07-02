@@ -10,6 +10,6 @@ modules:
     - \Helper\Integration
     - REST:
         depends: PhpBrowser
-        url: 'http://%CODECEPTION_URL%:%CODECEPTION_PORT%'
+        url: 'http://127.0.0.1:8888'
         curl:
           CURLOPT_RETURNTRANSFER: true
