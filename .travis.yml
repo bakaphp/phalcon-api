@@ -22,7 +22,7 @@ env:
       - DATA_API_MYSQL_HOST: "127.0.0.1"
       - DATA_API_MYSQL_PASS: ""
       - DATA_API_MYSQL_USER: "root"
-      - DATA_API_MYSQL_NAME: "gonano"
+      - DATA_API_MYSQL_NAME: "baka"
       - DATA_API_MEMCACHED_HOST: "127.0.0.1"
       - DATA_API_MEMCACHED_PORT: 11211
       - DATA_API_MEMCACHED_WEIGHT: 100
@@ -56,7 +56,7 @@ before_script:
   - cd $TRAVIS_BUILD_DIR
   - cp storage/ci/.env.example .env
   - cp storage/ci/phinx.php.example phinx.php
-  - mysql -e "CREATE DATABASE gonano"
+  - mysql -e "CREATE DATABASE baka"
   - sudo redis-server /etc/redis/redis.conf --port 6379
   - composer install --no-interaction
   - composer update --no-interaction
