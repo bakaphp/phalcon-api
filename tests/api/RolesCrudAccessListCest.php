@@ -7,12 +7,13 @@ use Phalcon\Security\Random;
 
 class RolesCrudAccessListCest extends BakaRestTest
 {
-    protected $model = 'roles-acceslist';
+    protected $model = 'roles-accesslist';
 
     /**
      * Create.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function create(ApiTester $I) : void
@@ -53,6 +54,7 @@ class RolesCrudAccessListCest extends BakaRestTest
      * update.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function update(ApiTester $I) : void
@@ -68,11 +70,11 @@ class RolesCrudAccessListCest extends BakaRestTest
             ],
             'access' => [
                 [
-                    'access_name' => 'test-create',
+                    'access_name' => 'create',
                     'resources_name' => 'Users',
                     'allowed' => 0,
                 ], [
-                    'access_name' => 'test-update',
+                    'access_name' => 'update',
                     'resources_name' => 'Users',
                     'allowed' => 0,
                 ],
@@ -99,9 +101,10 @@ class RolesCrudAccessListCest extends BakaRestTest
      * List.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
-    public function list(ApiTester $I):void
+    public function list(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
 
@@ -119,6 +122,7 @@ class RolesCrudAccessListCest extends BakaRestTest
      * Get.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getById(ApiTester $I) : void
@@ -145,6 +149,7 @@ class RolesCrudAccessListCest extends BakaRestTest
      * Get.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function copy(ApiTester $I) : void
@@ -172,6 +177,7 @@ class RolesCrudAccessListCest extends BakaRestTest
      * Delete.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function delete(ApiTester $I) : void

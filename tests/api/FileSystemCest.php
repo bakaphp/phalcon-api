@@ -3,18 +3,19 @@
 namespace Gewaer\Tests\api;
 
 use ApiTester;
-use function Canvas\Core\appPath;
+use function Baka\appPath;
 
 class FileSystemCest
 {
     protected $model = 'filesystem';
 
     /**
-    * Get.
-    *
-    * @param ApiTester $I
-    * @return void
-    */
+     * Get.
+     *
+     * @param ApiTester $I
+     *
+     * @return void
+     */
     public function getById(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
@@ -39,6 +40,7 @@ class FileSystemCest
      * Create.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function create(ApiTester $I) : void
@@ -47,10 +49,9 @@ class FileSystemCest
         $fileName = 'test.png';
 
         $I->haveHttpHeader('Authorization', $userData->token);
-        $I->haveHttpHeader('Content-Type', 'multipart/form-data');
 
         //use the app path, path changes by container
-        $testFile = appPath() . '/tests/testfiles/test.png';
+        $testFile = appPath() . 'tests/testfiles/test.png';
 
         $I->sendPost('/v1/' . $this->model, ['system_modules_id' => 1, 'entity_id' => 0], ['file' => $testFile]);
 
@@ -65,6 +66,7 @@ class FileSystemCest
      * update.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function update(ApiTester $I) : void
@@ -79,7 +81,6 @@ class FileSystemCest
         $data = json_decode($response, true);
 
         $newFileName = 'newfile2.png';
-        $I->haveHttpHeader('Content-Type', 'multipart/form-data');
         $I->sendPUT('/v1/' . $this->model . '/' . $data[count($data) - 1]['id'], [
             'name' => $newFileName,
         ]);

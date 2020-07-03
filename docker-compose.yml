@@ -1,14 +1,14 @@
-version: "3.5"
+version: "3.8"
 
 services:
 
   #php server
   canvasapi:
-    image: mctekk/phalconphp:latest
+    image: mctekk/phalconphp:7.4
     volumes:
       - .:/app
       - ../canvas-core:/canvas-core
-      - ../../baka:/baka
+      - ../baka:/baka
     depends_on:
       - 'redis'
       - 'mysql'
@@ -23,7 +23,7 @@ services:
     volumes:
       - .:/app
       - ../canvas-core:/canvas-core
-      - ../../baka:/baka
+      - ../baka:/baka
     depends_on:
       - 'redis'
       - 'mysql'

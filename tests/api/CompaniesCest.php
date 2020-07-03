@@ -10,9 +10,10 @@ class CompaniesCest extends BakaRestTest
     protected $model = 'companies';
 
     /**
-     * Create
+     * Create.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function create(ApiTester $I) : void
@@ -34,9 +35,10 @@ class CompaniesCest extends BakaRestTest
     }
 
     /**
-     * Get
+     * Get.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getById(ApiTester $I) : void
@@ -61,16 +63,16 @@ class CompaniesCest extends BakaRestTest
     }
 
     /**
-     * update
+     * update.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function update(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
-        $random = new Random();
-        $companyName = $random->base58();
+        $companyName = $I->faker()->company;
 
         $I->haveHttpHeader('Authorization', $userData->token);
         $I->sendGet('/v1/' . $this->model);
