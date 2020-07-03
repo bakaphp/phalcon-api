@@ -2,11 +2,11 @@
     "require": {
         "php": ">= 7.4",
         "ext-openssl": "*",
-        "ext-phalcon": ">=4"
+        "ext-phalcon": ">=4",
+        "canvas/core": "0.2",
+        "baka/baka": "0.6"
     },
     "require-dev": {
-        "canvas/core": "0.2",
-        "baka/baka": "0.6",
         "bakaphp/php-apple-signin": "^2.0",
         "codeception/codeception": "^4.1",
         "codeception/module-asserts": "^1.2",
