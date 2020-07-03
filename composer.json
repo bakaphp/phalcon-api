@@ -3,8 +3,7 @@
         "php": ">= 7.4",
         "ext-openssl": "*",
         "ext-phalcon": ">=4",
-        "canvas/core": "0.2",
-        "baka/baka": "0.6"
+        "canvas/core": "^0.2"
     },
     "require-dev": {
         "bakaphp/php-apple-signin": "^2.0",
