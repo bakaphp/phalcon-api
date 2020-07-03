@@ -5,8 +5,8 @@
         "ext-phalcon": ">=4"
     },
     "require-dev": {
-        "canvas/core": "dev-feature-move-to-baka",
-        "baka/baka": "dev-feature-kanvas-break",
+        "canvas/core": "0.2",
+        "baka/baka": "0.6",
         "bakaphp/php-apple-signin": "^2.0",
         "codeception/codeception": "^4.1",
         "codeception/module-asserts": "^1.2",
