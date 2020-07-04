@@ -9,6 +9,22 @@ require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . '/vendor/baka/baka/src
 // Composer Autoloader.
 require appPath('vendor/autoload.php');
 
+//development loads
+$loader = new Loader();
+$namespaces = [
+    'Canvas' => '/canvas-core/src',
+    'Baka' => '/baka/src',
+    'Phalcon\Cashier' => '/baka/cashier/src',
+    'Gewaer' => appPath('/library'),
+    'Gewaer\Api\Controllers' => appPath('/api/controllers'),
+    'Gewaer\Cli\Tasks' => appPath('/cli/tasks'),
+    'Niden\Tests' => appPath('/tests'),
+    'Gewaer\Tests' => appPath('/tests')
+];
+$loader->registerNamespaces($namespaces);
+
+$loader->register();
+
 // Load environment
 $dotenv = Dotenv::createImmutable(appPath());
 $dotenv->load();
