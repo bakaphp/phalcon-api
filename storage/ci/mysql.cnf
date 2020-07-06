@@ -3,3 +3,6 @@ innodb_log_file_size=2G
 #https://dba.stackexchange.com/questions/69795/benefits-of-barracuda-and-compression
 innodb_file_format=Barracuda
 innodb_strict_mode = 0
+innodb_page_size=64k
+innodb_log_buffer_size=32M
+innodb_buffer_pool_size=512M

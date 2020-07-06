@@ -20,7 +20,7 @@ return [
     ],
     'app' => [
         //GEWAER is a multi entity app ecosystem so we need what is the current api ID for this api
-        'id' => envValue('GEWAER_APP_ID', 1),
+        'id' => envValue('GEWAER_APP_ID', 'ac53fedf-f873-4b96-973a-2368690652b5'),
         'frontEndUrl' => envValue('FRONTEND_URL'),
         'version' => envValue('VERSION', time()),
         'timezone' => envValue('APP_TIMEZONE', 'UTC'),
@@ -46,7 +46,7 @@ return [
     ],
     'filesystem' => [
         //temp directory where we will upload our files before moving them to the final location
-        'uploadDirectoy' => appPath(envValue('LOCAL_UPLOAD_DIR_TEMP')),
+        'uploadDirectory' => appPath(envValue('LOCAL_UPLOAD_DIR_TEMP')),
         'local' => [
             'path' => appPath(envValue('LOCAL_UPLOAD_DIR')),
             'cdn' => envValue('FILESYSTEM_CDN_URL'),
