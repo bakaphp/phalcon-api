@@ -30,8 +30,6 @@ env:
       - REDIS_PORT: 6379
       - APP_IP: "api.baka.ld"
       - APP_ENV: development
-      - JWT_SECURITY: 0
-      - GEWAER_APP_ID: 1
       - PHINX_CONFIG_DIR: "/home/scrutinizer/build/storage"
 
 cache:
