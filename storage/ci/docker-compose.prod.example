@@ -3,7 +3,7 @@ version: "3.5"
 services:
 
   #php server
-  kanvasadminapi:
+  canvasapi:
     image: mctekk/phalconphp:7.4
     volumes:
       - .:/app
@@ -16,9 +16,9 @@ services:
   nginx:
     image: nginx:latest
     ports:
-        - "8089:80"
+        - "8090:80"
     links:
-        - kanvasadminapi
+        - canvasapi
     volumes:
         - .:/app
         - ./storage/ci/nginx.conf:/etc/nginx/conf.d/default.conf
