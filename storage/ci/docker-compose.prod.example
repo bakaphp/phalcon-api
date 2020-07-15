@@ -1,0 +1,31 @@
+version: "3.5"
+
+services:
+
+  #php server
+  kanvasadminapi:
+    image: mctekk/phalconphp:7.4
+    volumes:
+      - .:/app
+    tty: true
+    ports:
+      - "9000:9000"
+    networks:
+      - local-network
+
+  nginx:
+    image: nginx:latest
+    ports:
+        - "8089:80"
+    links:
+        - kanvasadminapi
+    volumes:
+        - .:/app
+        - ./storage/ci/nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - local-network
+      - public-network
+
+networks:
+  local-network:
+  public-network:
