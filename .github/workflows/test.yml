@@ -18,6 +18,8 @@ jobs:
       DATA_API_MEMCACHED_WEIGHT: 100
       STRIPE_PUBLIC: ${{ secrets.STRIPE_PUBLIC }}
       STRIPE_SECRET: ${{ secrets.STRIPE_SECRET }}
+      EMAIL_USER: ${{ secrets.EMAIL_USER }}
+      EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
       REDIS_HOST: 127.0.0.1
       REDIS_PORT: 6379
       APP_IP: api.baka.ld
