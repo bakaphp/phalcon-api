@@ -49,6 +49,7 @@ install:
   - php --ri phalcon
   - wget https://github.com/swoole/swoole-src/archive/v4.4.x.tar.gz -O swoole.tar.gz && mkdir -p swoole && tar -xf swoole.tar.gz -C swoole --strip-components=1 && rm swoole.tar.gz && cd swoole && phpize && ./configure && make -j$(nproc) && make install && cd - && rm -rf swoole
   - echo "extension = swoole.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo 'memory_limit = 3014M' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo 'memory_limit = 3014M' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 before_script:
