@@ -9,13 +9,14 @@ jobs:
     env:
       extensions: mbstring, intl, json, phalcon4, redis, swoole, xdebug
       key: cache-v0.0.2
-      DATA_API_MYSQL_HOST: mysql
+      DATA_API_MYSQL_HOST: 127.0.0.1
       DATA_API_MYSQL_USER: root
+      DATA_API_MYSQL_PASS: password
       DATA_API_MYSQL_NAME: baka
       DATA_API_MEMCACHED_HOST: 127.0.0.1
       DATA_API_MEMCACHED_PORT: 11211
       DATA_API_MEMCACHED_WEIGHT: 100
-      REDIS_HOST: redis
+      REDIS_HOST: 127.0.0.1
       REDIS_PORT: 6379
       APP_IP: api.baka.ld
       APP_ENV: development
@@ -24,7 +25,8 @@ jobs:
       mysql:
         image: mariadb:10.4
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ALLOW_EMPTY_PASSWORD: false
+          MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: baka
         ports:
           - 3306/tcp
