@@ -102,6 +102,9 @@ jobs:
       - name: Phinx Migrate Kanvas
         run: vendor/bin/phinx migrate -e development -c phinx-kanvas.php
         
+      - name: Phinx Migrate Kanvas Seed
+        run: vendor/bin/phinx seed:run -c phinx-kanvas.php
+        
       - name: Phinx Migrate
         run: vendor/bin/phinx migrate -e development
 
