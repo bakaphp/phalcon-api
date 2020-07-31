@@ -30,6 +30,8 @@
         "phalcon/ide-stubs": "^3.3",
         "phalcon/incubator": "4.0.x-dev",
         "phalcon/incubator-acl": "^1.0.0-alpha.1",
+        "phalcon/incubator-test" : "^1.0.0-alpha.1",
+        "phalcon/ide-stubs": "^4.0",
         "php-amqplib/php-amqplib": "^2.9",
         "phpstan/phpstan": "0.9.3",
         "phpunit/phpunit": "^9.1",
