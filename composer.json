@@ -4,8 +4,7 @@
         "ext-openssl": "*",
         "ext-phalcon": ">=4",
         "canvas/core": "0.2.x-dev",
-        "baka/baka": "0.6.x-dev",
-        "phalcon/ide-stubs": "^4.0"
+        "baka/baka": "0.6.x-dev"
     },
     "require-dev": {
         "bakaphp/php-apple-signin": "^2.0",
@@ -32,6 +31,7 @@
         "phalcon/incubator": "4.0.x-dev",
         "phalcon/incubator-acl": "^1.0.0-alpha.1",
         "phalcon/incubator-test" : "^1.0.0-alpha.1",
+        "phalcon/ide-stubs": "^4.0",
         "php-amqplib/php-amqplib": "^2.9",
         "phpstan/phpstan": "0.9.3",
         "phpunit/phpunit": "^9.1",
