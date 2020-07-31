@@ -39,7 +39,7 @@ cache:
     - ~/cphalcon
 
 before_install:
-  - echo 'memory_limit = 2014M' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo 'memory_limit = 3014M' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   
 install:
   - composer self-update
