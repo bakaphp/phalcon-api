@@ -38,6 +38,9 @@ cache:
     - $HOME/.composer/cache
     - ~/cphalcon
 
+before_install:
+  - echo 'memory_limit=2G' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  
 install:
   - composer self-update
   - composer clearcache
