@@ -2,9 +2,9 @@
 
 namespace Gewaer\Tests\unit;
 
+use function Baka\appPath;
 use CliTester;
 use Codeception\Util\HttpCode;
-use function Baka\appPath;
 
 class BootstrapCest
 {

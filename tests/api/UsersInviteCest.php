@@ -2,18 +2,20 @@
 
 namespace Gewaer\Tests\api;
 
-use Phalcon\Security\Random;
 use ApiTester;
 use Canvas\Models\AppsPlans;
+use Phalcon\Security\Random;
 
 class UsersInviteCest
 {
     /**
-     * Insert and process a user invite for a non-existent user
+     * Insert and process a user invite for a non-existent user.
+     *
      * @param ApiTester
+     *
      * @return void
      */
-    public function insertInvite(ApiTester $I):void
+    public function insertInvite(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
         $userName = $I->faker()->firstname;
@@ -50,15 +52,17 @@ class UsersInviteCest
         $response = $I->grabResponse();
         $dataInvite = json_decode($response, true);
 
-        $I->assertTrue($dataInvite['user']['email'] == $testEmail);
+        $I->assertTrue($dataInvite['email'] == $testEmail);
     }
 
     /**
-     * Get users invite by hash test
+     * Get users invite by hash test.
+     *
      * @param ApiTester
+     *
      * @return void
      */
-    public function getByHash(ApiTester $I):void
+    public function getByHash(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
         $userName = $I->faker()->firstname;
