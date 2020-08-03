@@ -2,15 +2,15 @@
 
 namespace Gewaer\Tests\api;
 
-use Phalcon\Security\Random;
-use Canvas\Models\UserCompanyAppsActivities;
-use Canvas\Models\AppsPlans;
 use ApiTester;
+use Canvas\Models\AppsPlans;
 use Canvas\Models\Companies;
+use Canvas\Models\UserCompanyAppsActivities;
 use Canvas\Models\Users;
 use Exception;
-use Phalcon\Di;
 use Page\Data;
+use Phalcon\Di;
+use Phalcon\Security\Random;
 
 class SubscriptionLimitCest
 {
@@ -19,9 +19,10 @@ class SubscriptionLimitCest
      * users is working with.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
-    public function updateActivity(ApiTester $I): void
+    public function updateActivity(ApiTester $I) : void
     {
         //we are going to test the activity of 1 modele (users)
 
@@ -100,9 +101,10 @@ class SubscriptionLimitCest
      * Confirm by chaging the total usage of the plan for the test account, we encounter the limit exception.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
-    public function isAtLimit(ApiTester $I):void
+    public function isAtLimit(ApiTester $I) : void
     {
         //we are going to test the activity of 1 modele (users)
 
@@ -147,9 +149,9 @@ class SubscriptionLimitCest
             $dataInvite = json_decode($response, true);
         } catch (Exception $e) {
             $reachLimit = true;
-        }
 
-        //are we at our limit?
-        $I->assertTrue($reachLimit);
+            //are we at our limit?
+            $I->assertTrue($reachLimit);
+        }
     }
 }

@@ -29,12 +29,12 @@ class AuthCest
             );
 
             $response = $I->grabResponse();
-            $response = json_decode($response, true);
+            $response = json_decode($response);
         } catch (Exception $e) {
             $response = $e->getMessage();
         }
 
-        $I->assertEquals('No User Found', $response['errors']['message']);
+        $I->assertEquals('No User Found', $response);
     }
 
     /**
