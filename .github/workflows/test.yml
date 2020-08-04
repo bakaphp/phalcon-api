@@ -125,12 +125,12 @@ jobs:
 
       - name: Run api test suites
         if: success()
-        run: vendor/bin/codecept run api
+        run: vendor/bin/codecept run api --coverage-xml=coverage-${{ matrix.php-versions }}.xml
 
       - name: Run integration test suites
         if: success()
         run: vendor/bin/codecept run integration
 
-      - name: Run unit test suites
+      - name: Run un test suites
         if: success()
         run: vendor/bin/codecept run unit
