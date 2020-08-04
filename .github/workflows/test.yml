@@ -126,8 +126,10 @@ jobs:
       - name: CLI Acl
         run: php cli/cli.php acl crm
 
-      - name: Run test suites
-        run: vendor/bin/codecept run --coverage-xml=coverage-${{ matrix.php-versions }}.xml
-
       - name: Run unit test suites
+        if: success()
         run: vendor/bin/codecept run unit
+
+      - name: Run test suites
+        if: success()
+        run: vendor/bin/codecept run --coverage-xml=coverage-${{ matrix.php-versions }}.xml
