@@ -25,12 +25,6 @@ Kanvas Ecosystem API powered by PhalconPHP
 
 **NOTE** : To ensure the project runs smoothly in a development environment you must comment or remove `canvas/core": "dev-master"` dependency from composer.json
 
-### Kanvas Core Developer Mode
-If you need to work with the kanvas core directly
-- Download [Canvas Core](https://github.com/bakaphp/canvas-core) and copy it on the same folder where `phalcon-api` is located(Both projects must be in the same folder).
-- On  `phalcon-api/library/Core/autoload.php` comment `require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . '/vendor/canvas/core/src/Core/functions.php';` and uncomment `require  '/         canvas-core/src/Core/functions.php';`
-- On `phalcon-api/library/Core/autoload.php` uncomment `'Canvas' => '/canvas-core/src',`
-
 ### CLI
 - On every deploy crear the session caches `./app/php cli/cli.php clearcache` 
 - On every deploy update your DB `./app/vendor/bin/phinx migrate -e production`
@@ -56,12 +50,6 @@ The Kanvas Core uses RabbitMQ to manage our queue process. Internally we handle 
  - Company Configuration
  - Payment / Free trial flow
 - Rapid API CRUD Creation
-
-
-### Baka HTTP
-We use the library [Baka HTTP](https://github.com/bakaphp/http) to handle our Routing 
-
-### Usage
 
 ### ACL
 By Default the Canvas will assign all register user the Admin role but if you want to define a specific roles , you will need to add to your app settings
