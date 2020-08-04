@@ -13,7 +13,7 @@ class BootstrapCest
         ob_start();
         require appPath('api/public/index.php');
         $actual = ob_get_contents();
-        // ob_end_clean();
+        ob_end_clean();
         $results = json_decode($actual, true);
         $I->assertEquals('1.0', $results['jsonapi']['version']);
         $I->assertEmpty($results['data']);
