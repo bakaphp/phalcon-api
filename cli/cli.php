@@ -1,5 +1,6 @@
 <?php
 
+use function Baka\envValue;
 use Canvas\Bootstrap\Cli;
 use Swoole\Runtime;
 
