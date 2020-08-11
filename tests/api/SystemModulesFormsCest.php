@@ -1,0 +1,70 @@
+<?php
+
+namespace Gewaer\Tests\api;
+
+use ApiTester;
+use Phalcon\Security\Random;
+
+class SystemModulesFormsCest extends BakaRestTest
+{
+    protected $model = 'custom-forms';
+
+    /**
+     * Create.
+     *
+     * @param ApiTester $I
+     *
+     * @return void
+     */
+    public function create(ApiTester $I) : void
+    {
+        $userData = $I->apiLogin();
+        $random = new Random();
+        $formName = $random->base58();
+
+        $I->haveHttpHeader('Authorization', $userData->token);
+        $I->sendPost('/v1/' . $this->model, [
+            'name' => $formName,
+            'slug' => strtolower($formName),
+            'form_schema' => '{"field":"name","color":"blue"}',
+            'system_modules_id' => 1
+        ]);
+
+        $I->seeResponseIsSuccessful();
+        $response = $I->grabResponse();
+        $data = json_decode($response, true);
+
+        $I->assertTrue($data['name'] == $formName);
+    }
+
+    /**
+     * update.
+     *
+     * @param ApiTester $I
+     *
+     * @return void
+     */
+    public function update(ApiTester $I) : void
+    {
+        $userData = $I->apiLogin();
+        $random = new Random();
+        $formName = $random->base58();
+
+        $I->haveHttpHeader('Authorization', $userData->token);
+        $I->sendGet('/v1/' . $this->model);
+
+        $I->seeResponseIsSuccessful();
+        $response = $I->grabResponse();
+        $data = json_decode($response, true);
+
+        $I->sendPUT('/v1/' . $this->model . '/' . $data[count($data) - 1]['id'], [
+            'name' => $formName
+        ]);
+
+        $I->seeResponseIsSuccessful();
+        $response = $I->grabResponse();
+        $data = json_decode($response, true);
+
+        $I->assertTrue($data['name'] == $formName);
+    }
+}
