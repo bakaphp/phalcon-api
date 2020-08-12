@@ -5,7 +5,7 @@ namespace Gewaer\Tests\api;
 use ApiTester;
 use Phalcon\Security\Random;
 
-class MenusCest extends BakaRestTest
+class MenusCest
 {
     protected $model = 'menus';
 
@@ -42,7 +42,7 @@ class MenusCest extends BakaRestTest
      *
      * @return void
      */
-    public function getById(ApiTester $I) : void
+    public function getBySlug(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
 
@@ -53,7 +53,7 @@ class MenusCest extends BakaRestTest
         $response = $I->grabResponse();
         $data = json_decode($response, true);
 
-        $I->sendGet("/v1/{$this->model}/" . $data[0]['id']);
+        $I->sendGet("/v1/{$this->model}/" . $data[0]['slug']);
 
         $I->seeResponseIsSuccessful();
         $response = $I->grabResponse();
