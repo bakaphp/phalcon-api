@@ -13,9 +13,6 @@ return [
             'profile' => getenv('DEBUG_PROFILE'),
             'logQueries' => getenv('DEBUG_QUERY'),
             'logRequest' => getenv('DEBUG_REQUEST')
-        ],
-        'core' => [
-            'path' => envValue('CANVAS_CORE_PATH', appPath('vendor/canvas/core'))
         ]
     ],
     'app' => [
@@ -39,6 +36,9 @@ return [
             'defaultPlan' => [
                 'name' => 'default-free-trial'
             ]
+        ],
+        'core' => [
+            'path' => envValue('CANVAS_CORE_PATH', appPath('vendor/canvas/core'))
         ]
     ],
     'namespace' => [
