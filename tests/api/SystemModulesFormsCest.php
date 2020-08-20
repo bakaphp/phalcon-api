@@ -5,7 +5,7 @@ namespace Gewaer\Tests\api;
 use ApiTester;
 use Phalcon\Security\Random;
 
-class SystemModulesFormsCest extends BakaRestTest
+class SystemModulesFormsCest
 {
     protected $model = 'custom-forms';
 
