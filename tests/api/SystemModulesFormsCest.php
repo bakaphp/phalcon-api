@@ -38,6 +38,34 @@ class SystemModulesFormsCest extends BakaRestTest
     }
 
     /**
+     * Get.
+     *
+     * @param ApiTester $I
+     *
+     * @return void
+     */
+    public function getBySlug(ApiTester $I) : void
+    {
+        $userData = $I->apiLogin();
+
+        $I->haveHttpHeader('Authorization', $userData->token);
+        $I->sendGet("/v1/{$this->model}");
+
+        $I->seeResponseIsSuccessful();
+        $response = $I->grabResponse();
+        $data = json_decode($response, true);
+
+        $I->sendGet("/v1/{$this->model}/" . $data[0]['slug']);
+
+        $I->seeResponseIsSuccessful();
+        $response = $I->grabResponse();
+        $data = json_decode($response, true);
+
+        $I->assertTrue(isset($data['name']));
+        $I->assertTrue(isset($data['id']));
+    }
+
+    /**
      * update.
      *
      * @param ApiTester $I
