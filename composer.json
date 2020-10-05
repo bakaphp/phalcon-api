@@ -3,8 +3,8 @@
         "php": ">= 7.4",
         "ext-openssl": "*",
         "ext-phalcon": ">=4",
-        "canvas/core": "0.2.x-dev",
-        "baka/baka": "0.6.x-dev"
+        "baka/baka": "0.6.x-dev",
+        "aporat/store-receipt-validator": "^4.0"
     },
     "require-dev": {
         "bakaphp/php-apple-signin": "^2.0",
@@ -37,7 +37,7 @@
         "psr/log": "^1.0",
         "pusher/pusher-php-server": "^4.1",
         "robmorgan/phinx": "^0.12",
-        "sentry/sentry": "^2.4",
+        "sentry/sentry": "^3.0",
         "sly/notification-pusher": "2.x",
         "squizlabs/php_codesniffer": "^3.2",
         "stripe/stripe-php": "^7.36",
@@ -53,7 +53,8 @@
         "symfony/finder": "^4.4",
         "symfony/process": "^4.4",
         "symfony/yaml": "3.4",
-        "vlucas/phpdotenv": "^4.1"
+        "vlucas/phpdotenv": "^4.1",
+        "php-http/guzzle6-adapter": "^2.0"
     },
     "config": {
         "preferred-install": "dist",
