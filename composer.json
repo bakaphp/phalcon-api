@@ -3,6 +3,7 @@
         "php": ">= 7.4",
         "ext-openssl": "*",
         "ext-phalcon": ">=4",
+        "canvas/core": "0.2.x-dev",
         "baka/baka": "0.6.x-dev",
         "aporat/store-receipt-validator": "^4.0"
     },
