@@ -21,6 +21,7 @@ use Gewaer\Providers\ErrorHandlerProvider;
 use Gewaer\Providers\EventsManagerProvider;
 use Gewaer\Providers\MailProvider;
 use Gewaer\Providers\ModelsMetadataProvider;
+use Gewaer\Providers\UserProvider;
 
 return [
     ConfigProvider::class,
@@ -39,5 +40,6 @@ return [
     PusherProvider::class,
     AclProvider::class,
     FileSystemProvider::class,
-    EventsManagerProvider::class
+    EventsManagerProvider::class,
+    UserProvider::class
 ];

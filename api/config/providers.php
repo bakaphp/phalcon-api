@@ -26,7 +26,7 @@ use Canvas\Providers\ElasticProvider;
 use Canvas\Providers\SocialLoginProvider;
 use Gewaer\Providers\MiddlewareProvider;
 use Canvas\Providers\RegistryProvider;
-use Canvas\Providers\UserProvider;
+use Gewaer\Providers\UserProvider;
 use Canvas\Providers\ViewProvider;
 
 return [
