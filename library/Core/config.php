@@ -76,7 +76,6 @@ return [
                 'host' => envValue('REDIS_HOST', '127.0.0.1'),
                 'port' => envValue('REDIS_PORT', 6379),
                 'lifetime' => envValue('CACHE_LIFETIME', 86400),
-                'index' => 1,
                 'prefix' => 'data-',
             ],
         ],
@@ -90,7 +89,6 @@ return [
                 'options' => [
                     'host' => envValue('REDIS_HOST', '127.0.0.1'),
                     'port' => envValue('REDIS_PORT', 6379),
-                    'index' => 1,
                     'lifetime' => envValue('CACHE_LIFETIME', 86400),
                     'prefix' => 'metadatas-caches-'
                 ],

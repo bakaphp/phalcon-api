@@ -58,7 +58,7 @@ class DevicesCest
         $response = $I->grabResponse();
         $data = json_decode($response, true);
 
-        $I->assertTrue($data['msg'] == 'User Device Already Associated');
+        $I->assertTrue($data['msg'] == 'User Device Associated');
     }
 
     /**
