@@ -17,9 +17,14 @@ Kanvas Ecosystem API powered by PhalconPHP
 - After the build, access the project main container with `docker exec -it id_of_docker_container sh`
 - Inside the container's console run get inside the `apps` folder, `cd app/`
 - Copy `storage/ci/phinx.php` to `phinx.php`
+- Copy `storage/ci/phinx-kanvas.php` to `phinx-kanvas.php`
 - To finish the setup run `./runCli setup start` this will run migration, seed and acl
 
 **NOTE** : This requires [docker](https://www.docker.com/) to be present in your system. Visit their site for installation instructions.
+
+### CREATE NEW APP
+
+- To create a new app run `./runCli setup newapp {{AppName}}`
 
 ### CLI
 - Clear model and temp cache `./app/php cli/cli.php clearcache` 
