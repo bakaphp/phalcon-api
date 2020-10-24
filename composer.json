@@ -4,8 +4,7 @@
         "ext-openssl": "*",
         "ext-phalcon": ">=4",
         "canvas/core": "0.2.x-dev",
-        "baka/baka": "0.6.x-dev",
-        "kanvas/packages": "0.1.x-dev"
+        "baka/baka": "0.6.x-dev"
     },
     "require-dev": {
         "bakaphp/php-apple-signin": "^2.0",
@@ -39,6 +38,8 @@
         "pusher/pusher-php-server": "^4.1",
         "robmorgan/phinx": "^0.12",
         "sentry/sentry": "^2.4",
+        "php-http/curl-client": "^2.0",
+        "php-http/httplug": "^2.0",
         "sly/notification-pusher": "2.x",
         "squizlabs/php_codesniffer": "^3.2",
         "stripe/stripe-php": "^7.36",

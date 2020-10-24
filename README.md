@@ -16,19 +16,20 @@ Kanvas Ecosystem API powered by PhalconPHP
 - Run Docker containers with the `docker-compose up --build` command
 - After the build, access the project main container with `docker exec -it id_of_docker_container sh`
 - Inside the container's console run get inside the `apps` folder, `cd app/`
-- Inside the container's console run  `./vendor/bin/phinx migrate -e production` to create the db , you need to have the phinx.php file , if you dont see it on your main filder you can       find the copy at `storage/ci/phinx.php`
-- Inside the container's console run `./vendor/bin/phinx seed:run` to create the necesary initial data
-- Inside the container's console run `php cli/cli.php acl` AND `php cli/cli.php acl crm` to create the default roles of the system
-- Inside the container's console run `./vendor/bin/codecept run` to run project tests.
+- Copy `storage/ci/phinx.php` to `phinx.php`
+- Copy `storage/ci/phinx-kanvas.php` to `phinx-kanvas.php`
+- To finish the setup run `./runCli setup start` this will run migration, seed and acl
 
 **NOTE** : This requires [docker](https://www.docker.com/) to be present in your system. Visit their site for installation instructions.
 
-**NOTE** : To ensure the project runs smoothly in a development environment you must comment or remove `canvas/core": "dev-master"` dependency from composer.json
+### CREATE NEW APP
+
+- To create a new app run `./runCli setup newapp {{AppName}}`
 
 ### CLI
-- On every deploy crear the session caches `./app/php cli/cli.php clearcache` 
-- On every deploy update your DB `./app/vendor/bin/phinx migrate -e production`
-- Queue to clear jwt sessions `./app/php cli/cli.php clearcache sessions`
+- Clear model and temp cache `./app/php cli/cli.php clearcache` 
+- Update db migartion  `./app/vendor/bin/phinx migrate -e production`
+- Clear old Sessions on db  `./app/php cli/cli.php clearcache sessions`
 
 ### QUEUES
 The Kanvas Core uses RabbitMQ to manage our queue process. Internally we handle 3 queue jobs to start
@@ -38,18 +39,12 @@ The Kanvas Core uses RabbitMQ to manage our queue process. Internally we handle 
 
 **Jobs** : will handle normal Jobs run on any moment during the runtime of the app
 
-**Events** : will handle events we run send to the queue `$this->events->fireToQueue('user:test', Users::findFirst(), ['test'])`
+**Events** : will handle events we run send to the queue 
+  `$this->events->fireToQueue('user:test', Users::findFirst(), ['test'])`
 
-**Notifications** : will handle notifications we send to the queue `Users::findFirst(18)->notify(new CanvasSubscription(Companies::findFirst(10)))`
+**Notifications** : will handle notifications we send to the queue 
+  `Users::findFirst(18)->notify(new CanvasSubscription(Companies::findFirst(10)))`
 
-### Features
-- User Managament
-  - Registration , Login, Multi Tenant 
-- ACL 
-- Saas Configuracion
- - Company Configuration
- - Payment / Free trial flow
-- Rapid API CRUD Creation
 
 ### ACL
 By Default the Canvas will assign all register user the Admin role but if you want to define a specific roles , you will need to add to your app settings
@@ -76,6 +71,10 @@ And on your contianer network info
       - local-network
       - my-proxy-net
 ```
+
+### TEST
+
+- Inside the container's console run `./vendor/bin/codecept run` 
 
 ### TODO
 - Documentation

@@ -91,10 +91,10 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-suggest
+        run: composer install --prefer-dist
 
       - name: Update Composer dependencies
-        run: composer update --prefer-dist --no-suggest
+        run: composer update --prefer-dist
 
       - name: Setup Env Variable
         run: cp storage/ci/.env.example .env
@@ -104,24 +104,15 @@ jobs:
         
       - name: Setup Phinx
         run: cp storage/ci/phinx.php.example phinx.php
-        
-      - name: Phinx Migrate Kanvas
-        run: vendor/bin/phinx migrate -e development -c phinx-kanvas.php
-        
-      - name: Phinx Migrate Kanvas Seed
-        run: vendor/bin/phinx seed:run -c phinx-kanvas.php
+      
+      - name: Setup Kanvas
+        run: php cli/cli.php setup start
         
       - name: Phinx Migrate
         run: vendor/bin/phinx migrate -e development
 
       - name: Phinx Seed:run
         run: vendor/bin/phinx seed:run
-
-      - name: CLI Setup
-        run: php cli/cli.php setup
-
-      - name: CLI Acl
-        run: php cli/cli.php acl crm
 
       - name: Run api test suites
         if: success()
