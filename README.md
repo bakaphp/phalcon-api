@@ -16,14 +16,10 @@ Kanvas Ecosystem API powered by PhalconPHP
 - Run Docker containers with the `docker-compose up --build` command
 - After the build, access the project main container with `docker exec -it id_of_docker_container sh`
 - Inside the container's console run get inside the `apps` folder, `cd app/`
-- Inside the container's console run  `./vendor/bin/phinx migrate -e production` to create the db , you need to have the phinx.php file , if you dont see it on your main filder you can       find the copy at `storage/ci/phinx.php`
-- Inside the container's console run `./vendor/bin/phinx seed:run` to create the necesary initial data
-- Inside the container's console run `php cli/cli.php acl` AND `php cli/cli.php acl crm` to create the default roles of the system
-- Inside the container's console run `./vendor/bin/codecept run` to run project tests.
+- Copy `storage/ci/phinx.php` to `phinx.php`
+- To finish the setup run `./runCli setup start` this will run migration, seed and acl
 
 **NOTE** : This requires [docker](https://www.docker.com/) to be present in your system. Visit their site for installation instructions.
-
-**NOTE** : To ensure the project runs smoothly in a development environment you must comment or remove `canvas/core": "dev-master"` dependency from composer.json
 
 ### CLI
 - On every deploy crear the session caches `./app/php cli/cli.php clearcache` 
@@ -76,6 +72,10 @@ And on your contianer network info
       - local-network
       - my-proxy-net
 ```
+
+### TEST
+
+- Inside the container's console run `./vendor/bin/codecept run` 
 
 ### TODO
 - Documentation
