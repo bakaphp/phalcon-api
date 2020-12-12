@@ -1,10 +1,9 @@
 <?php
 
+use Baka\Http\Exception\UnauthorizedException;
 use Canvas\Models\Subscription;
-use Gewaer\Tests\api\PaymentsCest;
-use Canvas\Models\CompaniesSettings;
-use Canvas\Exception\SubscriptionPlanFailureException;
 use Gewaer\Models\Users;
+use Gewaer\Tests\api\PaymentsCest;
 
 class AppsPlanCest
 {
@@ -12,9 +11,10 @@ class AppsPlanCest
      * Create subscription.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
-    public function upgrade(ApiTester $I): void
+    public function upgrade(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
         $this->undeleteSubscriptions();
@@ -33,9 +33,10 @@ class AppsPlanCest
      * Create subscription.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
-    public function downgrade(ApiTester $I): void
+    public function downgrade(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
         $this->undeleteSubscriptions();
@@ -54,9 +55,10 @@ class AppsPlanCest
      * Create subscription.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
-    public function cancelSubscription(ApiTester $I): void
+    public function cancelSubscription(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
 
@@ -92,6 +94,7 @@ class AppsPlanCest
      * Free Trial Ending Test.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function freeTrialEndingSubscription(ApiTester $I) : void
@@ -118,9 +121,12 @@ class AppsPlanCest
     }
 
     /**
-     * Failed Payment permitted routes access Test.
+     * Failed Payment  routes access Test.
+     *
      * @todo update this test , we are failing
+     *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function FailPaymentPermittedRoutesAccess(ApiTester $I) : void
@@ -129,30 +135,26 @@ class AppsPlanCest
         $apiException = null;
         $I->haveHttpHeader('Authorization', $userData->token);
 
-        $companyId = Users::findFirst($userData->id)->currentCompanyId();
-
-        //Fetch Paid Setting of Company
-        $paidSetting = CompaniesSettings::findFirst([
-            'conditions' => 'companies_id = ?0 and name = ?1 and is_deleted = 0',
-            'bind' => [$companyId, 'paid']
-        ]);
+        $user = Users::findFirst($userData->id);
+        $subscription = Subscription::getByDefaultCompany($user);
 
         //Modify paid to 0
-        $paidSetting->value = 0;
-        $paidSetting->update();
+        $subscription->is_active = 0;
+        $subscription->updateOrFail();
 
         //try a random route
+        $apiException = false;
         try {
-            $I->sendGet('/v1/locales');
+            $I->sendGet('/v1/custom-fields');
             $I->seeResponseIsSuccessful();
             $response = $I->grabResponse();
             $data = json_decode($response, true);
-        } catch (SubscriptionPlanFailureException $e) {
+        } catch (UnauthorizedException $e) {
             $apiException = $e;
         }
 
-        $paidSetting->value = 1;
-        $paidSetting->update();
-        //$I->assertTrue($apiException instanceof SubscriptionPlanFailureException);
+        $subscription->is_active = 1;
+        $subscription->updateOrFail();
+        $I->assertTrue($apiException instanceof UnauthorizedException);
     }
 }
