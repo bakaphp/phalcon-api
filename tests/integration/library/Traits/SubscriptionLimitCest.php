@@ -4,7 +4,7 @@ namespace Gewaer\Tests\integration\library\Models;
 
 use Gewaer\Models\Apps;
 use IntegrationTester;
-use Canvas\Traits\SubscriptionPlanLimitTrait;
+use Canvas\Contracts\SubscriptionPlanLimitTrait;
 use Gewaer\Models\Users;
 use Helper\Integration;
 

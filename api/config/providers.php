@@ -4,32 +4,34 @@
  * Enabled providers. Order does matter.
  */
 
+use Canvas\Providers\AclProvider;
+use Canvas\Providers\AppProvider;
 use Canvas\Providers\CacheDataProvider;
+use Canvas\Providers\ElasticProvider;
+use Canvas\Providers\FileSystemProvider;
+use Canvas\Providers\LoggerProvider;
+use Canvas\Providers\MapperProvider;
+use Canvas\Providers\ModelsCacheProvider;
+use Canvas\Providers\QueueProvider;
+use Canvas\Providers\RedisProvider;
+use Canvas\Providers\RegistryProvider;
+use Canvas\Providers\ResponseProvider;
+use Canvas\Providers\SessionProvider;
+use Canvas\Providers\SocialLoginProvider;
+use Canvas\Providers\ViewProvider;
 use Gewaer\Providers\ConfigProvider;
 use Gewaer\Providers\DatabaseProvider;
 use Gewaer\Providers\ErrorHandlerProvider;
-use Canvas\Providers\LoggerProvider;
-use Gewaer\Providers\ModelsMetadataProvider;
-use Gewaer\Providers\RouterProvider;
-use Canvas\Providers\SessionProvider;
-use Canvas\Providers\QueueProvider;
-use Gewaer\Providers\MailProvider;
-use Canvas\Providers\RedisProvider;
-use Gewaer\Providers\RequestProvider;
-use Canvas\Providers\AclProvider;
-use Canvas\Providers\AppProvider;
-use Canvas\Providers\ResponseProvider;
-use Canvas\Providers\FileSystemProvider;
 use Gewaer\Providers\EventsManagerProvider;
-use Canvas\Providers\MapperProvider;
-use Canvas\Providers\ElasticProvider;
-use Canvas\Providers\SocialLoginProvider;
+use Gewaer\Providers\MailProvider;
 use Gewaer\Providers\MiddlewareProvider;
-use Canvas\Providers\RegistryProvider;
+use Gewaer\Providers\ModelsMetadataProvider;
+use Gewaer\Providers\RequestProvider;
+use Gewaer\Providers\RouterProvider;
 use Gewaer\Providers\UserProvider;
-use Canvas\Providers\ViewProvider;
 
 return [
+    RequestProvider::class,
     ConfigProvider::class,
     AppProvider::class,
     EventsManagerProvider::class,
@@ -38,7 +40,7 @@ return [
     ErrorHandlerProvider::class,
     DatabaseProvider::class,
     ModelsMetadataProvider::class,
-    RequestProvider::class,
+    ModelsCacheProvider::class,
     RouterProvider::class,
     MiddlewareProvider::class,
     CacheDataProvider::class,

@@ -14,6 +14,7 @@ use Canvas\Providers\ModelsCacheProvider;
 use Canvas\Providers\PusherProvider;
 use Canvas\Providers\QueueProvider;
 use Canvas\Providers\RedisProvider;
+use Canvas\Providers\RequestProvider;
 use Canvas\Providers\RegistryProvider;
 use Gewaer\Providers\ConfigProvider;
 use Gewaer\Providers\DatabaseProvider;
@@ -24,6 +25,7 @@ use Gewaer\Providers\ModelsMetadataProvider;
 use Gewaer\Providers\UserProvider;
 
 return [
+    RequestProvider::class,
     ConfigProvider::class,
     AppProvider::class,
     LoggerProvider::class,
