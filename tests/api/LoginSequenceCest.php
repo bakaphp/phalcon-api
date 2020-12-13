@@ -177,7 +177,7 @@ class LoginSequenceCest
         $response = $I->grabResponse();
         $data = json_decode($response, true);
 
-        $I->assertTrue(array_key_exists('subscription', $data[0]) && $data[0]['subscription']['companies_id'] == $this->defaultCompaniesId);
+        $I->assertTrue(array_key_exists('subscription', $data[0]) && !empty($data[0]['subscription']['stripe_id']));
     }
 
     /**
