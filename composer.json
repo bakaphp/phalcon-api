@@ -4,7 +4,7 @@
         "ext-openssl": "*",
         "ext-phalcon": ">=4",
         "canvas/core": "0.2.x-dev",
-        "baka/baka": "0.6.x-dev"
+        "baka/baka": "0.6"
     },
     "require-dev": {
         "bakaphp/php-apple-signin": "^2.0",
