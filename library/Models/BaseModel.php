@@ -7,5 +7,13 @@ use Canvas\Models\AbstractModel;
 
 class BaseModel extends AbstractModel
 {
-
+    /**
+     * Parent initialize.
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        $this->setConnectionService('dbLocal');
+    }
 }

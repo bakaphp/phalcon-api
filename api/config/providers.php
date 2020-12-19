@@ -20,6 +20,7 @@ use Canvas\Providers\SessionProvider;
 use Canvas\Providers\SocialLoginProvider;
 use Canvas\Providers\ViewProvider;
 use Gewaer\Providers\ConfigProvider;
+use Gewaer\Providers\DatabaseCanvasProvider;
 use Gewaer\Providers\DatabaseProvider;
 use Gewaer\Providers\ErrorHandlerProvider;
 use Gewaer\Providers\EventsManagerProvider;
@@ -38,6 +39,7 @@ return [
     LoggerProvider::class,
     RegistryProvider::class,
     ErrorHandlerProvider::class,
+    DatabaseCanvasProvider::class,
     DatabaseProvider::class,
     ModelsMetadataProvider::class,
     ModelsCacheProvider::class,

@@ -14,9 +14,10 @@ use Canvas\Providers\ModelsCacheProvider;
 use Canvas\Providers\PusherProvider;
 use Canvas\Providers\QueueProvider;
 use Canvas\Providers\RedisProvider;
-use Canvas\Providers\RequestProvider;
 use Canvas\Providers\RegistryProvider;
+use Canvas\Providers\RequestProvider;
 use Gewaer\Providers\ConfigProvider;
+use Gewaer\Providers\DatabaseCanvasProvider;
 use Gewaer\Providers\DatabaseProvider;
 use Gewaer\Providers\ErrorHandlerProvider;
 use Gewaer\Providers\EventsManagerProvider;
@@ -31,6 +32,7 @@ return [
     LoggerProvider::class,
     RegistryProvider::class,
     ErrorHandlerProvider::class,
+    DatabaseCanvasProvider::class,
     DatabaseProvider::class,
     ModelsCacheProvider::class,
     ModelsMetadataProvider::class,
