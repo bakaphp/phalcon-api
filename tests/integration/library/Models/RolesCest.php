@@ -3,20 +3,21 @@
 namespace Gewaer\Tests\integration\library\Models;
 
 use Canvas\Models\Apps;
-use IntegrationTester;
-use Gewaer\Providers\ConfigProvider;
-use Phalcon\Di\FactoryDefault;
-use Canvas\Models\Roles;
 use Canvas\Models\Companies;
+use Canvas\Models\Roles;
 use Gewaer\Models\Users;
+use Gewaer\Providers\ConfigProvider;
+use IntegrationTester;
 use Page\Data;
+use Phalcon\Di\FactoryDefault;
 
 class RolesCest
 {
     /**
-     * Confirm the default apps exist
+     * Confirm the default apps exist.
      *
      * @param IntegrationTester $I
+     *
      * @return void
      */
     public function getByAppName(IntegrationTester $I)
