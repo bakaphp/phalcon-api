@@ -1,7 +1,12 @@
-name: "Tests"
+name: "Development Branch Tests"
 
-on: [push, pull_request]
-
+on: 
+  push: 
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
 jobs:
   run-tests:
     name: PHP ${{ matrix.php-versions }}
@@ -89,6 +94,9 @@ jobs:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
+
+      - name: Copy development env composer.json
+        run: yes | cp storage/ci/composer.dev.json composer.json
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist
