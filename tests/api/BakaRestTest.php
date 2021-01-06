@@ -5,7 +5,7 @@ namespace Gewaer\Tests\api;
 use ApiTester;
 
 /**
- * Baka Rest standar functions
+ * Baka Rest standard functions.
  *
  * @package Gewaer\Tests\api
  */
@@ -14,25 +14,28 @@ abstract class BakaRestTest
     protected $model;
 
     /**
-     * Create
+     * Create.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     abstract public function create(ApiTester $I) : void;
 
     /**
-     * Update
+     * Update.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     abstract public function update(ApiTester $I) : void;
 
     /**
-     * Get
+     * Get.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function list(ApiTester $I) : void
@@ -50,9 +53,10 @@ abstract class BakaRestTest
     }
 
     /**
-     * Get
+     * Get.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getById(ApiTester $I) : void
@@ -76,9 +80,10 @@ abstract class BakaRestTest
     }
 
     /**
-     * Delete
+     * Delete.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function delete(ApiTester $I) : void
