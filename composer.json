@@ -8,7 +8,7 @@
     },
     "require-dev": {
         "bakaphp/php-apple-signin": "^2.0",
-        "codeception/codeception": "^4.1",
+        "codeception/codeception": "4.1.15",
         "codeception/module-asserts": "^1.2",
         "codeception/module-cli": "^1.0.0",
         "codeception/module-filesystem": "^1.0",
