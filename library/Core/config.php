@@ -3,7 +3,6 @@
 use function Baka\appPath;
 use function Baka\envValue;
 use Canvas\Constants\Flags;
-use Redis;
 
 return [
     'application' => [ //@todo migration to app
