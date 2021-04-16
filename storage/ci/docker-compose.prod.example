@@ -12,6 +12,9 @@ services:
       - "9022:9000"
     networks:
       - local-network
+    deploy:
+      restart_policy:
+        condition: on-failure
 
   nginx:
     image: nginx:latest
@@ -25,6 +28,9 @@ services:
     networks:
       - local-network
       - public-network
+    deploy:
+      restart_policy:
+        condition: on-failure
 
 networks:
   local-network:
