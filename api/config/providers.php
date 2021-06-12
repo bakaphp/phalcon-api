@@ -30,6 +30,7 @@ use Gewaer\Providers\ModelsMetadataProvider;
 use Gewaer\Providers\RequestProvider;
 use Gewaer\Providers\RouterProvider;
 use Gewaer\Providers\UserProvider;
+use Kanvas\Packages\Social\Providers\DatabaseProvider as SocialDatabaseProvider;
 
 return [
     RequestProvider::class,
@@ -41,15 +42,16 @@ return [
     ErrorHandlerProvider::class,
     DatabaseCanvasProvider::class,
     DatabaseProvider::class,
+    SocialDatabaseProvider::class,
     ModelsMetadataProvider::class,
     ModelsCacheProvider::class,
+    RedisProvider::class,
     RouterProvider::class,
     MiddlewareProvider::class,
     CacheDataProvider::class,
     SessionProvider::class,
     QueueProvider::class,
     MailProvider::class,
-    RedisProvider::class,
     AclProvider::class,
     ResponseProvider::class,
     FileSystemProvider::class,

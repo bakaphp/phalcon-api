@@ -10,10 +10,12 @@ use Canvas\Providers\CacheDataProvider;
 use Canvas\Providers\CliDispatcherProvider;
 use Canvas\Providers\FileSystemProvider;
 use Canvas\Providers\LoggerProvider;
+use Canvas\Providers\MapperProvider;
+use Canvas\Providers\ModelManagerProvider;
 use Canvas\Providers\ModelsCacheProvider;
 use Canvas\Providers\PusherProvider;
 use Canvas\Providers\QueueProvider;
-use Canvas\Providers\RedisProvider;
+use Canvas\Providers\RedisCliProvider;
 use Canvas\Providers\RegistryProvider;
 use Canvas\Providers\RequestProvider;
 use Gewaer\Providers\ConfigProvider;
@@ -23,27 +25,35 @@ use Gewaer\Providers\ErrorHandlerProvider;
 use Gewaer\Providers\EventsManagerProvider;
 use Gewaer\Providers\MailProvider;
 use Gewaer\Providers\ModelsMetadataProvider;
+use Gewaer\Providers\UserDataProvider;
 use Gewaer\Providers\UserProvider;
+use Kanvas\Packages\Social\Providers\DatabaseProvider as SocialDatabaseProvider;
+use Kanvas\Packages\WorkflowsRules\Providers\DatabaseProvider as WorkflowDatabaseProvider;
 
 return [
     RequestProvider::class,
     ConfigProvider::class,
+    ModelManagerProvider::class,
     AppProvider::class,
     LoggerProvider::class,
     RegistryProvider::class,
     ErrorHandlerProvider::class,
-    DatabaseCanvasProvider::class,
     DatabaseProvider::class,
+    DatabaseCanvasProvider::class,
+    SocialDatabaseProvider::class,
+    WorkflowDatabaseProvider::class,
     ModelsCacheProvider::class,
     ModelsMetadataProvider::class,
     CliDispatcherProvider::class,
     CacheDataProvider::class,
     QueueProvider::class,
     MailProvider::class,
-    RedisProvider::class,
+    RedisCliProvider::class,
     PusherProvider::class,
     AclProvider::class,
+    MapperProvider::class,
     FileSystemProvider::class,
     EventsManagerProvider::class,
-    UserProvider::class
+    UserProvider::class,
+    UserDataProvider::class,
 ];

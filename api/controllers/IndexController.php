@@ -5,22 +5,13 @@ declare(strict_types=1);
 namespace Gewaer\Api\Controllers;
 
 use Canvas\Api\Controllers\IndexController as CanvasIndexController;
+use Gewaer\Cli\Jobs\Test;
+use Kanvas\Packages\Social\Contracts\Feeds\ChannelsTrait;
 use Phalcon\Http\Response;
 
 class IndexController extends CanvasIndexController
 {
-    /**
-     * Index.
-     *
-     * @method GET
-     * @url /
-     *
-     * @return Response
-     */
-    public function index($id = null) : Response
-    {
-        return $this->response(['Woot Canvas']);
-    }
+    //use ChannelsTrait;
 
     /**
      * Show the status of the diferent services.
@@ -32,6 +23,17 @@ class IndexController extends CanvasIndexController
      */
     public function status() : Response
     {
+        $i = 0;
+        while ($i < 10) {
+            Test::dispatch();
+            $i++;
+        }
+
+        /*   $this->request->validate([
+              'title' => ['required', 'unique:posts', 'max:255'],
+              'body' => ['required'],
+          ]); */
+
         return parent::status();
     }
 }
