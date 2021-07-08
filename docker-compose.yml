@@ -117,7 +117,7 @@ services:
       networks:
         - local-network
 
-    queueEvents:
+   queueEvents:
       image: mctekk/phalconphp:7.4-debian
       container_name: kanvas-queue-events
       working_dir: /app
@@ -130,7 +130,7 @@ services:
       networks:
         - local-network
   
-    queueNotification:
+   queueNotification:
       image: mctekk/phalconphp:7.4-debian
       container_name: kanvas-queue-notifications
       working_dir: /app
