@@ -105,43 +105,43 @@ services:
       - local-network
 
    queue:
-      image: mctekk/phalconphp:7.4-debian
-      container_name: kanvas-queue
-      working_dir: /app
-      command: ./runCli queue jobs
-      volumes:
-        - .:/app
-        -  ./storage/ci/php.ini-production:/usr/local/etc/php/php.ini
-      restart: always
-      tty: true
-      networks:
-        - local-network
+    image: mctekk/phalconphp:7.4-debian
+    container_name: kanvas-queue
+    working_dir: /app
+    command: ./runCli queue jobs
+    volumes:
+    - .:/app
+    -  ./storage/ci/php.ini-production:/usr/local/etc/php/php.ini
+    restart: always
+    tty: true
+    networks:
+    - local-network
 
    queueEvents:
-      image: mctekk/phalconphp:7.4-debian
-      container_name: kanvas-queue-events
-      working_dir: /app
-      command: ./runCli queue events
-      volumes:
-        - .:/app
-        -  ./storage/ci/php.ini-production:/usr/local/etc/php/php.ini
-      restart: always
-      tty: true
-      networks:
-        - local-network
+    image: mctekk/phalconphp:7.4-debian
+    container_name: kanvas-queue-events
+    working_dir: /app
+    command: ./runCli queue events
+    volumes:
+    - .:/app
+    -  ./storage/ci/php.ini-production:/usr/local/etc/php/php.ini
+    restart: always
+    tty: true
+    networks:
+    - local-network
   
    queueNotification:
-      image: mctekk/phalconphp:7.4-debian
-      container_name: kanvas-queue-notifications
-      working_dir: /app
-      command: ./runCli queue notifications
-      volumes:
-        - .:/app
-        -  ./storage/ci/php.ini-production:/usr/local/etc/php/php.ini
-      restart: always
-      tty: true
-      networks:
-        - local-network
+    image: mctekk/phalconphp:7.4-debian
+    container_name: kanvas-queue-notifications
+    working_dir: /app
+    command: ./runCli queue notifications
+    volumes:
+    - .:/app
+    -  ./storage/ci/php.ini-production:/usr/local/etc/php/php.ini
+    restart: always
+    tty: true
+    networks:
+    - local-network
 
 volumes:
   db-data:
