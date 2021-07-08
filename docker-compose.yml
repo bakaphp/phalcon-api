@@ -104,7 +104,7 @@ services:
     networks:
       - local-network
 
-    queue:
+   queue:
       image: mctekk/phalconphp:7.4-debian
       container_name: kanvas-queue
       working_dir: /app
