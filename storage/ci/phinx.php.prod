@@ -6,11 +6,9 @@ $dotenv->load();
 return [
     'paths' => [
         'migrations' => [
-            getenv('CANVAS_CORE_PATH') . '/storage/db/migrations',
             getenv('PHINX_CONFIG_DIR') . '/db/migrations',
         ],
         'seeds' => [
-            getenv('CANVAS_CORE_PATH') . '/storage/db/seeds',
             getenv('PHINX_CONFIG_DIR') . '/db/seeds',
         ]
     ],
@@ -19,19 +17,19 @@ return [
         'default_database' => 'development',
         'production' => [
             'adapter' => 'mysql',
-            'host' => getenv('DATA_API_MYSQL_HOST'),
-            'name' => getenv('DATA_API_MYSQL_NAME'),
-            'user' => getenv('DATA_API_MYSQL_USER'),
-            'pass' => getenv('DATA_API_MYSQL_PASS'),
+            'host' => getenv('DATA_API_LOCAL_MYSQL_HOST'),
+            'name' => getenv('DATA_API_LOCAL_MYSQL_NAME'),
+            'user' => getenv('DATA_API_LOCAL_MYSQL_USER'),
+            'pass' => getenv('DATA_API_LOCAL_MYSQL_PASS'),
             'port' => 3306,
             'charset' => 'utf8',
         ],
         'development' => [
             'adapter' => 'mysql',
-            'host' => getenv('DATA_API_MYSQL_HOST'),
-            'name' => getenv('DATA_API_MYSQL_NAME'),
-            'user' => getenv('DATA_API_MYSQL_USER'),
-            'pass' => getenv('DATA_API_MYSQL_PASS'),
+            'host' => getenv('DATA_API_LOCAL_MYSQL_HOST'),
+            'name' => getenv('DATA_API_LOCAL_MYSQL_NAME'),
+            'user' => getenv('DATA_API_LOCAL_MYSQL_USER'),
+            'pass' => getenv('DATA_API_LOCAL_MYSQL_PASS'),
             'port' => 3306,
             'charset' => 'utf8',
         ],

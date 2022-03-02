@@ -125,7 +125,7 @@ return [
         'payload' => [
             'exp' => envValue('APP_JWT_SESSION_EXPIRATION', 1440),
             'iss' => 'phalcon-jwt-auth',
-            'refresh_exp' => envValue('APP_JWT_REFRESH_EXPIRATION', 1440)
+            'refresh_exp' => envValue('APP_JWT_REFRESH_EXPIRATION', 10440)
         ],
     ],
     'pusher' => [

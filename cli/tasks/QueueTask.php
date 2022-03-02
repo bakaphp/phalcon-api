@@ -6,5 +6,4 @@ use Canvas\Cli\Tasks\QueueTask as CanvasQueueTask;
 
 class QueueTask extends CanvasQueueTask
 {
-
 }

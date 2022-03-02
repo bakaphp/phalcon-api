@@ -7,16 +7,6 @@ namespace Gewaer\Api\Controllers;
 use Canvas\Api\Controllers\IndexController as CanvasIndexController;
 use Phalcon\Http\Response;
 
-/**
- * Class IndexController.
- *
- * @package Gewaer\Api\Controllers
- *
- * @property Redis $redis
- * @property Beanstalk $queue
- * @property Mysql $db
- * @property \Monolog\Logger $log
- */
 class IndexController extends CanvasIndexController
 {
     /**
@@ -33,7 +23,7 @@ class IndexController extends CanvasIndexController
     }
 
     /**
-     * Show the status of the diferent services.
+     * Show the status of the different services.
      *
      * @method GET
      * @url /status

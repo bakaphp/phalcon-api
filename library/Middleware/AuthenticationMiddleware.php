@@ -6,11 +6,6 @@ namespace Gewaer\Middleware;
 
 use Canvas\Middleware\AuthenticationMiddleware as CanvasAuthenticationMiddleware;
 
-/**
- * Class AuthenticationMiddleware.
- *
- * @package Niden\Middleware
- */
 class AuthenticationMiddleware extends CanvasAuthenticationMiddleware
 {
 }

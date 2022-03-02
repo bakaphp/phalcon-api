@@ -3,8 +3,8 @@
         "php": ">= 7.4",
         "ext-openssl": "*",
         "ext-phalcon": ">=4",
-        "canvas/core": "^0.2",
-        "baka/baka": "^0.6"
+        "canvas/core": "^0.3",
+        "baka/baka": "^0.7"
     },
     "require-dev": {
         "bakaphp/php-apple-signin": "^2.0",
@@ -32,10 +32,10 @@
         "phalcon/incubator-test" : "^1.0.0-alpha.1",
         "phalcon/ide-stubs": "^4.0",
         "php-amqplib/php-amqplib": "^2.9",
-        "phpstan/phpstan": "0.9.3",
+        "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^9.1",
         "psr/log": "^1.0",
-        "pusher/pusher-php-server": "^4.1",
+        "pusher/pusher-php-server": "^5.0",
         "robmorgan/phinx": "^0.12",
         "sentry/sentry": "^2.4",
         "php-http/curl-client": "^2.0",
@@ -52,7 +52,7 @@
         "symfony/dom-crawler": "3.4",
         "symfony/event-dispatcher": "^4.4",
         "symfony/filesystem": "^4.4",
-        "symfony/finder": "^4.4",
+        "symfony/finder": "^5.1",
         "symfony/process": "^4.4",
         "symfony/yaml": "3.4",
         "vlucas/phpdotenv": "^4.1"

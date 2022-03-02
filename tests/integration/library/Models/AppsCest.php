@@ -3,8 +3,8 @@
 namespace Gewaer\Tests\integration\library\Models;
 
 use Canvas\Models\Apps;
-use IntegrationTester;
 use Gewaer\Providers\ConfigProvider;
+use IntegrationTester;
 use Phalcon\Di\FactoryDefault;
 
 class AppsCest
@@ -13,6 +13,7 @@ class AppsCest
      * Confirm the default apps exist.
      *
      * @param IntegrationTester $I
+     *
      * @return void
      */
     public function getDefaultApp(IntegrationTester $I)
@@ -25,6 +26,7 @@ class AppsCest
      * Confirm the default apps exist.
      *
      * @param IntegrationTester $I
+     *
      * @return void
      */
     public function getGewaerApp(IntegrationTester $I)

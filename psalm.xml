@@ -9,9 +9,9 @@
     autoloader="vendor/autoload.php"
 >
     <projectFiles>
-        <directory name="config" />
-        <directory name="routes" />
-        <directory name="src" />
+        <directory name="api" />
+        <directory name="library" />
+        <directory name="cli" />
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>
