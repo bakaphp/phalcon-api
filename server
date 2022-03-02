@@ -1,0 +1,134 @@
+#!/usr/bin/env php
+<?php
+
+// Copied from <https://github.com/limingxinleo>
+
+define('ROOT_PATH', __DIR__);
+define('APP_PATH', ROOT_PATH);
+define('IS_CLI', false);
+define('ENGINE', 'SWOOLE');
+
+use Canvas\Bootstrap\Swoole;
+use Canvas\Http\SwooleResponse;
+use Phalcon\Di\FactoryDefault;
+
+$script = $argv[0];
+if (empty($argv[1])) {
+    echo './server [start|restart|reload|stop|status]' . PHP_EOL;
+    exit;
+}
+
+$action = $argv[1];
+
+//auto load
+require_once __DIR__ . '/vendor/autoload.php';
+
+/**
+ * Get config service for use in inline setup below.
+ */
+$pidDir = ROOT_PATH;
+$logDir = ROOT_PATH . '/logs';
+
+//move to config
+$host = '0.0.0.0';
+$port = 8081;
+
+$pidFile = $pidDir . 'swoole_http_server.pid';
+$logFile = $logDir . 'swoole_http_server.log';
+
+$pid = 0;
+if (file_exists($pidFile)) {
+    $pid = intval(file_get_contents($pidFile));
+    if (!swoole_process::kill($pid, 0)) {
+        $pid = 0;
+    }
+}
+
+switch ($action) {
+    case 'restart':
+        if ($pid > 0) {
+            swoole_process::kill($pid);
+            while (swoole_process::kill($pid, 0)) {
+            }
+        }
+    // no break
+    case 'start':
+        $http = new swoole_http_server($host, $port);
+
+        /**
+         * @todo move to .env or another config file
+         */
+        $http->set([
+            'dispatch_mode' => 2,
+            'worker_num' => 10,
+            'max_request' => 10000,
+            'log_file' => $logFile,
+            'log_level' => 5,
+            'pid_file' => $pidFile,
+            'open_tcp_nodelay' => 1,
+            'daemonize' => 0,
+        ]);
+        $http->on('workerStart', function () {
+            /** @var FactoryDefault $di */
+            require __DIR__ . '/library/Core/autoload.php';
+        });
+        $http->on('request', function ($request, $response) {
+            $response->header('Access-Control-Allow-Origin', '*');
+            $response->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+            $response->header('Access-Control-Allow-Headers', 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range,publicKey,Authorization,KanvasKey,Client-Id,Client-Secret-Id');
+            $response->header('Access-Control-Max-Age', '86400');
+            $response->header('Access-Control-Allow-Credentials', 'true');
+            $response->header('Content-Type', 'application/json charset=UTF-8');
+
+            try {
+                //OPTION Request
+                if ($request->server['request_method'] == 'OPTIONS') {
+                    $response->status(200);
+                    $response->end();
+                    return;
+                };
+
+                $bootstrap = new Swoole();
+                $bootstrap->setup();
+
+                $SRequest = $bootstrap->getContainer()->get('request');
+                $SResponse = $bootstrap->getContainer()->get('response');
+                $SResponse->init($response);
+                $SRequest->init($request);
+
+                $bootstrap->run();
+            } catch (Throwable $e) {
+                //if we get a exception before response
+                if (!is_object($SResponse)) {
+                    $SResponse = new SwooleResponse();
+                    $SResponse->init($response);
+                }
+                $SResponse->handleException($e)->send();
+            }
+        });
+
+        echo 'swoole http server start.' . PHP_EOL;
+        $http->start();
+        break;
+    case 'reload':
+        if ($pid > 0 && swoole_process::kill($pid, SIGUSR1)) {
+            echo 'swoole http server reload successfully .' . PHP_EOL;
+        } else {
+            echo 'swoole http server is not running' . PHP_EOL;
+        }
+        break;
+    case 'stop':
+        if ($pid > 0 && swoole_process::kill($pid)) {
+            echo 'swoole http server stop successfully.' . PHP_EOL;
+        } else {
+            echo 'swoole http server is not running' . PHP_EOL;
+        }
+        break;
+    case 'status':
+        if ($pid > 0) {
+            echo 'swoole http server is running. master pid is ' . $pid . PHP_EOL;
+        } else {
+            echo 'swoole http server is not running' . PHP_EOL;
+        }
+        break;
+}
