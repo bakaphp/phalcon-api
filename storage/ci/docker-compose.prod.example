@@ -1,0 +1,31 @@
+version: "3.5"
+
+services:
+
+  #php server
+  canvasapi:
+    image: mctekk/phalconphp:7.4
+    volumes:
+      - .:/app
+    tty: true
+    ports:
+      - "9022:9000"
+    networks:
+      - local-network
+
+  nginx:
+    image: nginx:latest
+    ports:
+        - "8090:80"
+    links:
+        - canvasapi
+    volumes:
+        - .:/app
+        - ./storage/ci/nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - local-network
+      - public-network
+
+networks:
+  local-network:
+  public-network:

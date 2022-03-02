@@ -5,9 +5,9 @@ namespace Gewaer\Tests\api;
 use ApiTester;
 use Phalcon\Security\Random;
 
-class CompaniesCest extends BakaRestTest
+class MenusCest
 {
-    protected $model = 'companies';
+    protected $model = 'menus';
 
     /**
      * Create.
@@ -20,18 +20,19 @@ class CompaniesCest extends BakaRestTest
     {
         $userData = $I->apiLogin();
         $random = new Random();
-        $companyName = $random->base58();
+        $menuName = $random->base58();
 
         $I->haveHttpHeader('Authorization', $userData->token);
         $I->sendPost('/v1/' . $this->model, [
-            'name' => $companyName
+            'name' => $menuName,
+            'slug' => $menuName
         ]);
 
         $I->seeResponseIsSuccessful();
         $response = $I->grabResponse();
         $data = json_decode($response, true);
 
-        $I->assertTrue($data['name'] == $companyName);
+        $I->assertTrue($data['name'] == $menuName);
     }
 
     /**
@@ -41,7 +42,7 @@ class CompaniesCest extends BakaRestTest
      *
      * @return void
      */
-    public function getById(ApiTester $I) : void
+    public function getBySlug(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
 
@@ -52,13 +53,13 @@ class CompaniesCest extends BakaRestTest
         $response = $I->grabResponse();
         $data = json_decode($response, true);
 
-        $I->sendGet("/v1/{$this->model}/" . $data[0]['id'] . '?relationships=branches');
+        $I->sendGet("/v1/{$this->model}/" . $data[0]['slug']);
 
         $I->seeResponseIsSuccessful();
         $response = $I->grabResponse();
         $data = json_decode($response, true);
 
-        $I->assertTrue(isset($data['branches']));
+        $I->assertTrue(isset($data['name']));
         $I->assertTrue(isset($data['id']));
     }
 
@@ -72,7 +73,8 @@ class CompaniesCest extends BakaRestTest
     public function update(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
-        $companyName = $I->faker()->company;
+        $random = new Random();
+        $menuName = $random->base58();
 
         $I->haveHttpHeader('Authorization', $userData->token);
         $I->sendGet('/v1/' . $this->model);
@@ -82,13 +84,13 @@ class CompaniesCest extends BakaRestTest
         $data = json_decode($response, true);
 
         $I->sendPUT('/v1/' . $this->model . '/' . $data[count($data) - 1]['id'], [
-            'name' => $companyName
+            'name' => $menuName
         ]);
 
         $I->seeResponseIsSuccessful();
         $response = $I->grabResponse();
         $data = json_decode($response, true);
 
-        $I->assertTrue($data['name'] == $companyName);
+        $I->assertTrue($data['name'] == $menuName);
     }
 }

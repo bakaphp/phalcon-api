@@ -33,7 +33,8 @@ class PaymentsCest
             'type' => 'charge.pending',
             'data' => [
                 'object' => [
-                    'customer' => $userData->stripe_id
+                    'customer' => $userData->stripe_id,
+                    'created' => time()
                 ]
             ]
         ]);
@@ -61,7 +62,8 @@ class PaymentsCest
             'type' => 'charge.failed',
             'data' => [
                 'object' => [
-                    'customer' => $userData->stripe_id
+                    'customer' => $userData->stripe_id,
+                    'created' => time()
                 ]
             ]
         ]);
@@ -89,7 +91,8 @@ class PaymentsCest
             'type' => 'charge.succeeded',
             'data' => [
                 'object' => [
-                    'customer' => $userData->stripe_id
+                    'customer' => $userData->stripe_id,
+                    'created' => time()
                 ]
             ]
         ]);

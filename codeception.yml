@@ -1,5 +1,5 @@
 # Can be changed while bootstrapping project
-actor_suffix: Tester
+actor: Tester
 
 paths:
   # Where the modules stored
@@ -11,10 +11,11 @@ paths:
   support: tests/_support
   envs: tests/_envs
 
+bootstrap: "_bootstrap.php"
+
 settings:
   # The name of bootstrap that will be used.
   # Each bootstrap file should be inside a suite directory.
-  bootstrap: _bootstrap.php
   colors: true
   # Tests (especially functional) can take a lot of memory
   # We set a high limit for them by default.
@@ -39,7 +40,7 @@ extensions:
 # Global modules configuration.
 modules:
   config:
-    Phalcon:
+    Phalcon4:
       bootstrap: "tests/_ci/bootstrap.php"
       cleanup: false
       savepoints: false

@@ -2,13 +2,13 @@
 
 namespace Gewaer\Tests\unit;
 
-use CliTester;
+use function Baka\appPath;
 use Codeception\Util\HttpCode;
-use function Canvas\Core\appPath;
+use UnitTester;
 
 class BootstrapCest
 {
-    public function checkBootstrap(CliTester $I)
+    public function checkBootstrap(UnitTester $I)
     {
         ob_start();
         require appPath('api/public/index.php');

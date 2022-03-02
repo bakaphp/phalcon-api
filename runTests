@@ -1,3 +1,3 @@
 #!/bin/bash
- 
-./vendor/bin/codecept run --coverage --coverage-html --coverage-xml
+
+./vendor/bin/codecept run 

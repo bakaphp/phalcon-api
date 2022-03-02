@@ -1,13 +1,12 @@
 <?php
 
+require __DIR__ . '/../../vendor/autoload.php';
+
+use function Baka\appPath;
+use function Baka\envValue;
 use Dotenv\Dotenv;
-use function Canvas\Core\appPath;
-
-// Register the auto loader
-require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . '/vendor/canvas/core/src/Core/functions.php';
-
-// Composer Autoloader.
-require appPath('vendor/autoload.php');
+use Phalcon\Loader;
 
 // Load environment
-(new Dotenv(appPath()))->overload();
+$dotenv = Dotenv::createImmutable(appPath());
+$dotenv->load();

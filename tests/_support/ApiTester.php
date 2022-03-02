@@ -1,6 +1,7 @@
 <?php
 
 use Codeception\Util\HttpCode;
+use Faker\Generator;
 use Niden\Http\Response;
 use Page\Data as DataPage;
 
@@ -22,6 +23,16 @@ use Page\Data as DataPage;
 class ApiTester extends \Codeception\Actor
 {
     use _generated\ApiTesterActions;
+
+    /**
+     * Faker data
+     *
+     * @return void
+     */
+    public function faker() : Generator
+    {
+        return Faker\Factory::create();
+    }
 
     /**
      * Checks if the response was successful

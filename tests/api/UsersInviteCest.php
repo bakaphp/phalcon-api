@@ -2,27 +2,28 @@
 
 namespace Gewaer\Tests\api;
 
-use Phalcon\Security\Random;
 use ApiTester;
 use Canvas\Models\AppsPlans;
+use Phalcon\Security\Random;
 
 class UsersInviteCest
 {
     /**
-     * Insert and process a user invite for a non-existent user
+     * Insert and process a user invite for a non-existent user.
+     *
      * @param ApiTester
+     *
      * @return void
      */
-    public function insertInvite(ApiTester $I):void
+    public function insertInvite(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
-        $random = new Random();
-        $userName = $random->base58();
+        $userName = $I->faker()->firstname;
 
         $testEmail = $userName . '@example.com';
 
         //reset
-        AppsPlans::findFirst(1)->set('users_total', 10);
+        AppsPlans::findFirst(1)->set('users_total', 30);
 
         $I->haveHttpHeader('Authorization', $userData->token);
         $I->sendPost('/v1/users/invite', [
@@ -52,34 +53,19 @@ class UsersInviteCest
         $dataInvite = json_decode($response, true);
 
         $I->assertTrue($dataInvite['email'] == $testEmail);
-
-        //Reinsert the new user to test invitation of an existing user
-
-        $I->sendPost('/v1/users-invite/' . $hash, [
-            'firstname' => 'testFirstsName',
-            'lastname' => 'testLastName',
-            'displayname' => $userName,
-            'password' => 'testpassword',
-            'user_active' => 1
-        ]);
-
-        $I->seeResponseIsSuccessful();
-        $response = $I->grabResponse();
-        $dataExitingUser = json_decode($response, true);
-
-        $I->assertTrue($dataExitingUser['id'] == $dataInvite['id']);
     }
 
     /**
-     * Get users invite by hash test
+     * Get users invite by hash test.
+     *
      * @param ApiTester
+     *
      * @return void
      */
-    public function getByHash(ApiTester $I):void
+    public function getByHash(ApiTester $I) : void
     {
         $userData = $I->apiLogin();
-        $random = new Random();
-        $userName = $random->base58();
+        $userName = $I->faker()->firstname;
 
         $testEmail = $userName . '@example.com';
 

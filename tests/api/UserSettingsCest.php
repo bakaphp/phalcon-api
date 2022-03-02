@@ -10,6 +10,7 @@ class UserSettingsCest
      * Get languages.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getLanguages(ApiTester $I) : void
@@ -31,6 +32,7 @@ class UserSettingsCest
      * Get timezones.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getTimezones(ApiTester $I) : void
@@ -52,6 +54,7 @@ class UserSettingsCest
      * Get locales.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getLocales(ApiTester $I) : void
@@ -73,6 +76,7 @@ class UserSettingsCest
      * Get currencies.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getCurrencies(ApiTester $I) : void
@@ -94,6 +98,7 @@ class UserSettingsCest
      * Get all roles.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getRoles(ApiTester $I) : void

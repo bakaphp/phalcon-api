@@ -20,6 +20,7 @@ class LoginSequenceCest
      * Get current user's info.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getCurrentUserInfo(ApiTester $I) : void
@@ -43,6 +44,7 @@ class LoginSequenceCest
      * Validate user's photo relationship.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function validateUsersPhoto(ApiTester $I) : void
@@ -65,6 +67,7 @@ class LoginSequenceCest
      * Validate user's roles relationship.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function validateUsersRoles(ApiTester $I) : void
@@ -87,6 +90,7 @@ class LoginSequenceCest
      * Get user's companies info.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getUsersCompaniesInfo(ApiTester $I) : void
@@ -109,6 +113,7 @@ class LoginSequenceCest
      * Get companies' branches.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getUsersCompaniesBranches(ApiTester $I) : void
@@ -131,6 +136,7 @@ class LoginSequenceCest
      * Get companies'  branches.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getUsersCompaniesApps(ApiTester $I) : void
@@ -155,6 +161,7 @@ class LoginSequenceCest
      * Get user's subscription.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getUsersDefaultSubscription(ApiTester $I) : void
@@ -177,6 +184,7 @@ class LoginSequenceCest
      * Get system modules.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getSystemModules(ApiTester $I) : void
@@ -198,6 +206,7 @@ class LoginSequenceCest
      * Get App.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getApp(ApiTester $I) : void
@@ -219,6 +228,7 @@ class LoginSequenceCest
      * Get user's notifications.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function getUsersNotifications(ApiTester $I) : void

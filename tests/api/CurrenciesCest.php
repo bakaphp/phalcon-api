@@ -10,9 +10,10 @@ class CurrenciesCest extends BakaRestTest
     protected $model = 'currencies';
 
     /**
-     * Create
+     * Create.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function create(ApiTester $I) : void
@@ -34,9 +35,10 @@ class CurrenciesCest extends BakaRestTest
     }
 
     /**
-     * update
+     * update.
      *
      * @param ApiTester $I
+     *
      * @return void
      */
     public function update(ApiTester $I) : void

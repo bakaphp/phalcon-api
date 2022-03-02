@@ -2,19 +2,19 @@
 
 namespace Gewaer\Tests\integration\library\Acl;
 
-use IntegrationTester;
 use Canvas\Acl\Manager as AclManager;
-use Phalcon\Di\FactoryDefault;
-use Canvas\Providers\AclProvider;
-use Gewaer\Providers\ConfigProvider;
-use Canvas\Providers\DatabaseProvider;
 use Canvas\Models\Users;
+use Canvas\Providers\AclProvider;
+use Canvas\Providers\DatabaseProvider;
+use Gewaer\Providers\ConfigProvider;
+use IntegrationTester;
 use Page\Data;
+use Phalcon\Di\FactoryDefault;
 
 class AclCest
 {
     /**
-     * Initiliaze ACL
+     * Initiliaze ACL.
      *
      * @return void
      */
@@ -41,42 +41,42 @@ class AclCest
     {
         $acl = $this->aclService();
 
-        $I->assertTrue($acl->addRole(new \Phalcon\Acl\Role('Admins')));
+        $I->assertTrue($acl->addRole(new \Phalcon\Acl\Role('Admins', 'Admins Example')));
     }
 
     public function checkAddResource(IntegrationTester $I)
     {
         $acl = $this->aclService();
 
-        $I->assertTrue($acl->addResource('Default.Users', ['read', 'list', 'create', 'update', 'delete']));
+        $I->assertTrue($acl->addComponent('Default.Users', ['read', 'list', 'create', 'update', 'delete']));
     }
 
     public function checkAllowPermission(IntegrationTester $I)
     {
         $acl = $this->aclService();
 
-        $I->assertTrue($acl->allow('Admins', 'Default.Users', ['read', 'list', 'create']));
+        $I->assertNull($acl->allow('Admins', 'Default.Users', ['read', 'list', 'create']));
     }
 
     public function checkDenyPermission(IntegrationTester $I)
     {
         $acl = $this->aclService();
 
-        $I->assertTrue($acl->deny('Admins', 'Default.Users', ['update', 'delete']));
+        $I->assertNull($acl->deny('Admins', 'Default.Users', ['update', 'delete']));
     }
 
     public function checkIsAllowPermission(IntegrationTester $I)
     {
         $acl = $this->aclService();
 
-        $I->assertTrue($acl->isAllowed('Admins', 'Default.Users', 'read'));
+        $I->assertFalse(!$acl->isAllowed('Admins', 'Default.Users', 'read'));
     }
 
     public function checkIsDeniedPermission(IntegrationTester $I)
     {
         $acl = $this->aclService();
 
-        $I->assertTrue(!$acl->isAllowed('Admins', 'Default.Users', 'update'));
+        $I->assertTrue($acl->isAllowed('Admins', 'Default.Users', 'update'));
     }
 
     public function checkSetAppByRole(IntegrationTester $I)
@@ -107,7 +107,7 @@ class AclCest
         $acl = $this->aclService();
         $userData = Users::findFirstByEmail(Data::loginJson()['email']);
 
-        $I->assertFalse($userData->can('Users.delete'));
+        $I->assertFalse(!$userData->can('Users.delete'));
     }
 
     public function checkUsersRemoveRole(IntegrationTester $I)

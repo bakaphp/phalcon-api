@@ -1,2 +1,6 @@
-/vendor
 .env
+phinx.php
+tests/_output/
+vendor/
+api/public/filesystem/
+docker-compose.yml
