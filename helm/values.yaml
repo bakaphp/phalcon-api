@@ -1,0 +1,39 @@
+# General Values
+# namespace:
+# apiImage:
+# lbSSLCert:
+
+# PHP INIT Values
+
+php:
+  memoryLimit: 2128M
+
+namespace: template-api
+#lbSSLCert: arn:aws:acm:us-east-1:
+apiImage: 858714440812.dkr.ecr.us-east-1.amazonaws.com/
+
+# Deployments Values
+deployments:
+  api:
+    name: api
+    containerName: api
+  queues:
+    jobs:
+      name: jobs-queue
+      containerName: jobs-queue
+    events:
+      name: events-queue
+      containerName: events-queue
+    notifications:
+      name: notifications-queue
+      containerName: notifications-queue
+    workflows:
+      name: workflows-queue
+      containerName: workflows-queue
+
+# Services Values
+
+services:
+  loadBalancer:
+    name: alb-api
+    appName: api
